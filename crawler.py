@@ -20,6 +20,17 @@ from playwright_stealth import stealth
 from seerfar_to_wb import lookup_wb_subjectid
 
 
+def remove_urls_from_text(text):
+    """移除文本中的链接"""
+    if not text:
+        return text
+    # 匹配常见 URL 格式
+    text = re.sub(r'https?://\S+', '', text)
+    # 清理多余空白
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
 OUTPUT_DIR = os.path.join(os.getcwd(), 'output')
 COOKIE_FILE = os.path.join(os.getcwd(), 'cookies.json')
 COOKIES_DIR = os.path.join(os.getcwd(), 'cookies')
@@ -1784,7 +1795,7 @@ def main():
                                     item_url = 'https://www.ozon.ru' + item_url
                                 if item_url == url:
                                     item['crawledImages'] = data.get('images', [])
-                                    item['crawledDescription'] = data.get('description', '')
+                                    item['crawledDescription'] = remove_urls_from_text(data.get('description', ''))
                                     # 查找并保存 wbId
                                     seerfar_id = item.get('categoryInfo', {}).get('category', {}).get('id')
                                     if seerfar_id:
@@ -2024,7 +2035,7 @@ def main():
                                 item_url = 'https://www.ozon.ru' + item_url
                             if item_url == url:
                                 item['crawledImages'] = data.get('images', [])
-                                item['crawledDescription'] = data.get('description', '')
+                                item['crawledDescription'] = remove_urls_from_text(data.get('description', ''))
                                 # 查找并保存 wbId
                                 seerfar_id = item.get('categoryInfo', {}).get('category', {}).get('id')
                                 if seerfar_id:
