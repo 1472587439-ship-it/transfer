@@ -7,7 +7,7 @@ import json
 import os
 import logging
 from flask import Flask, request, jsonify, send_from_directory
-from ozon_product_report import query, run_ozon_query
+from ozon_product_report import run_ozon_query
 from category_matcher import (
     search_categories, match_category, match_categories,
     build_category_ids_param, load_categories, rebuild_cache,
@@ -60,29 +60,24 @@ def api_query():
         category_queries = params.pop('categoryQueries', None)
         logger.info(f"[API_QUERY] 类目查询词 category_queries={category_queries}")
 
-        # 调用真实API (类目独立处理: 匹配后才放入API请求体)
+        # 元数据 (写入 latest.json, 供前端展示查询条件/时间)
+        extra_meta = {
+            'queried_at': __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'params': dict(params),
+            'category_queries': category_queries,
+        }
+
+        # 调用核心入口: run_ozon_query 内部已负责双写 (归档文件 + latest.json + index.json)
+        # 不再在这里手动拼 payload + 写 latest.json
         result = run_ozon_query(
             custom_filter=params,
             max_fetch_page=max_pages,
-            category_queries=category_queries
+            category_queries=category_queries,
+            auto_save=True,
+            custom_filename='web',
+            extra_meta=extra_meta,
         )
         logger.info(f"[API_QUERY] 返回商品数: {len(result) if isinstance(result, list) else 'N/A'}")
-
-        # 保存到 latest.json 供 /api/results 读取 + 持久化
-        try:
-            os.makedirs('output', exist_ok=True)
-            payload = {
-                "data": result if isinstance(result, list) else [],
-                "total_records": len(result) if isinstance(result, list) else 0,
-                "queried_at": __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                "params": {k: v for k, v in params.items() if k not in ('categoryQueries',)},
-                "category_queries": category_queries,
-            }
-            with open(os.path.join('output', 'latest.json'), 'w', encoding='utf-8') as f:
-                import json
-                json.dump(payload, f, ensure_ascii=False, indent=2)
-        except Exception as save_err:
-            logger.error(f"[API_QUERY] 保存 latest.json 失败: {save_err}")
 
         return jsonify({
             'code': 200,

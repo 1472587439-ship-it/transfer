@@ -211,8 +211,16 @@ def loop_call_api(custom_params=None, max_pages=None, stop_cond=None):
     }
 
 
-def save_response(data, auto_index=True, custom_filename=None):
-    """保存响应数据"""
+def save_response(data, auto_index=True, custom_filename=None, extra_meta=None):
+    """保存响应数据
+
+    Args:
+        data: 要保存的字典 (通常是 {"data": [...products], ...})
+        auto_index: 是否同步追加到 output/index.json
+        custom_filename: 自定义文件名 (不含时间戳), 例如 'response' 或 'web'
+        extra_meta: 额外元数据字典 (例如 web 端的 queried_at/params/category_queries),
+                    会合并到 latest.json 顶层, 但不会写入归档文件 (归档文件保留原始 data)
+    """
     if data is None:
         return None
 
@@ -226,12 +234,20 @@ def save_response(data, auto_index=True, custom_filename=None):
     filepath = os.path.join(OUTPUT_DIR, filename)
 
     try:
+        # 归档文件: 写入原始 data (不带 extra_meta, 保持离线脚本语义)
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         print(f"数据已保存到: {filepath}")
 
+        # latest.json: 写入 data + extra_meta (供前端读取 metadata)
+        latest_payload = dict(data) if isinstance(data, dict) else {'data': data}
+        if extra_meta and isinstance(extra_meta, dict):
+            # extra_meta 字段不覆盖 data 本身的字段
+            for k, v in extra_meta.items():
+                if k not in latest_payload:
+                    latest_payload[k] = v
         with open(LATEST_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            json.dump(latest_payload, f, ensure_ascii=False, indent=2)
 
     except IOError as e:
         print(f"保存数据失败: {e}")
@@ -240,7 +256,8 @@ def save_response(data, auto_index=True, custom_filename=None):
     if auto_index:
         update_index(filepath, data)
 
-    return {"filepath": filepath, "timestamp": timestamp, "filename": filename}
+    return {"filepath": filepath, "timestamp": timestamp, "filename": filename,
+            "latest_filepath": LATEST_FILE}
 
 
 def update_index(filepath, data):
@@ -333,7 +350,8 @@ def query_limit(custom_params=None, max_pages=10):
     return loop_call_api(custom_params=custom_params, max_pages=max_pages)
 
 
-def run_ozon_query(custom_filter=None, max_fetch_page=10, category_queries=None):
+def run_ozon_query(custom_filter=None, max_fetch_page=10, category_queries=None,
+                   auto_save=True, custom_filename=None, extra_meta=None):
     """
     对外入口函数 - 唯一对外暴露的方法
 
@@ -344,13 +362,34 @@ def run_ozon_query(custom_filter=None, max_fetch_page=10, category_queries=None)
         category_queries: 类目查询词列表 (中/英/俄/ID 任意一种均可)
                          这是独立参数, 不混入 custom_filter
                          匹配完成后才把得到的 ID 放入 API 请求体
+        auto_save: 是否自动双写到磁盘 (归档 + latest.json + index.json). 默认 True
+                   离线脚本和 Web 服务都受益于这一行为, 避免每个调用方重复实现
+        custom_filename: 归档文件名前缀, 例如 'web'. 为 None 时用 'response'
+        extra_meta: 额外元数据 (如 web 端的 queried_at/params/category_queries),
+                    仅写入 latest.json, 不写入归档文件
 
     Returns:
         list: 全部商品列表
+        (若 auto_save=True, 同时把 list 包裹在 payload 里写入 latest.json, 归档到带时间戳文件)
 
     使用示例:
-        # 仅查商品
+        # 仅查商品 (自动双写: response_<ts>.json + latest.json + index.json)
         run_ozon_query({'price': {'min': 100, 'max': 500}})
+
+        # Web 端调用: 归档文件名用 'web', latest.json 写入元数据
+        run_ozon_query(
+            custom_filter={'price': {'min': 100, 'max': 500}},
+            category_queries=['服装', 'Rashguard'],
+            custom_filename='web',
+            extra_meta={
+                'queried_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'params': {...},
+                'category_queries': ['服装', 'Rashguard'],
+            }
+        )
+
+        # 不自动保存 (纯查询, 调用方自己处理结果)
+        run_ozon_query(auto_save=False)
 
         # 带类目筛选 (类目作为独立参数, 不是 custom_filter 的一部分)
         run_ozon_query(
@@ -389,10 +428,22 @@ def run_ozon_query(custom_filter=None, max_fetch_page=10, category_queries=None)
 
     result = query(custom_params=custom_filter, max_pages=max_fetch_page)
 
+    # 归一化 products list
     if isinstance(result, dict) and 'data' in result:
-        return result['data']
+        products = result['data']
+    else:
+        products = result if isinstance(result, list) else []
 
-    return []
+    # 自动双写: 归档文件 + latest.json + index.json
+    if auto_save and products:
+        payload = {
+            "data": products,
+            "total_records": len(products),
+        }
+        save_response(payload, auto_index=True,
+                      custom_filename=custom_filename, extra_meta=extra_meta)
+
+    return products
 
 
 # ============================================================
