@@ -16,6 +16,9 @@ from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth
 
+# 导入 WB ID 映射查询模块
+from seerfar_to_wb import lookup_wb_subjectid
+
 
 OUTPUT_DIR = os.path.join(os.getcwd(), 'output')
 COOKIE_FILE = os.path.join(os.getcwd(), 'cookies.json')
@@ -1782,6 +1785,10 @@ def main():
                                 if item_url == url:
                                     item['crawledImages'] = data.get('images', [])
                                     item['crawledDescription'] = data.get('description', '')
+                                    # 查找并保存 wbId
+                                    seerfar_id = item.get('categoryInfo', {}).get('category', {}).get('id')
+                                    if seerfar_id:
+                                        item['wbId'] = lookup_wb_subjectid(seerfar_id)
                                     success_count += 1
                                     crawled_urls.add(url)
                                     break
@@ -2018,6 +2025,10 @@ def main():
                             if item_url == url:
                                 item['crawledImages'] = data.get('images', [])
                                 item['crawledDescription'] = data.get('description', '')
+                                # 查找并保存 wbId
+                                seerfar_id = item.get('categoryInfo', {}).get('category', {}).get('id')
+                                if seerfar_id:
+                                    item['wbId'] = lookup_wb_subjectid(seerfar_id)
                                 success_count += 1
                                 total_crawled += 1
                                 crawled_urls.add(url)
