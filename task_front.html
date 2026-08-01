@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozon 商品查询</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 1600px; margin: 0 auto; }
+        h1 { text-align: center; color: #1a1a2e; margin-bottom: 30px; font-size: 28px; }
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .card-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+        .section-title { font-size: 14px; font-weight: 600; color: #4f46e5; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 1px dashed #e5e7eb; }
+        .filter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+        .filter-item { display: flex; flex-direction: column; gap: 4px; }
+        .filter-item label { font-size: 12px; color: #666; font-weight: 500; }
+        .filter-item input, .filter-item select { padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
+        .filter-item input:focus, .filter-item select:focus { outline: none; border-color: #4f46e5; }
+        .filter-row { display: flex; gap: 10px; }
+        .filter-row .filter-item { flex: 1; }
+        .filter-textarea { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; min-height: 60px; }
+        .btn-row { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+        .btn { padding: 12px 32px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: #4f46e5; color: white; }
+        .btn-primary:hover { background: #4338ca; }
+        .btn-primary:disabled { background: #a5a6f6; cursor: not-allowed; }
+        .btn-secondary { background: #e5e7eb; color: #374151; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .results-info { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #f0fdf4; border-radius: 8px; margin-bottom: 16px; color: #166534; font-weight: 500; }
+        .table-container { overflow-x: auto; border-radius: 8px; border: 1px solid #e5e7eb; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th, td { padding: 10px 6px; text-align: left; border-bottom: 1px solid #e5e7eb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; }
+        th { background: #f9fafb; font-weight: 600; color: #374151; position: sticky; top: 0; }
+        tr:hover { background: #f9fafb; }
+        .loading { text-align: center; padding: 40px; color: #666; }
+        .status-bar { padding: 10px 16px; border-radius: 6px; margin-top: 12px; font-size: 14px; display: none; }
+        .status-bar.success { background: #f0fdf4; color: #166534; }
+        .status-bar.error { background: #fef2f2; color: #dc2626; }
+        .collapsible { background: #f9fafb; border-radius: 8px; margin-bottom: 12px; }
+        .collapsible-header { padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+        .collapsible-header:hover { background: #f0f0f0; }
+        .collapsible-content { padding: 0 16px 16px; display: none; }
+        .collapsible.open .collapsible-content { display: block; }
+        .collapsible.open .collapsible-header { border-bottom: 1px solid #e5e7eb; margin-bottom: 12px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .checkbox-group label { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 13px; }
+        .checkbox-group input[type="checkbox"] { margin: 0; }
+        .badge-local { font-size: 10px; padding: 1px 4px; border-radius: 3px; background: #dbeafe; color: #1e40af; }
+        .badge-cross { font-size: 10px; padding: 1px 4px; border-radius: 3px; background: #fef3c7; color: #92400e; }
+        .category-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 320px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .category-dropdown.show { display: block; }
+        .category-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 13px;
+        }
+        .category-item:hover { background: #f0f4ff; }
+        .category-item.selected { background: #eef2ff; }
+        .category-item .cat-id { color: #6b7280; font-size: 11px; font-family: monospace; }
+        .category-item .cat-names { display: flex; flex-direction: column; gap: 2px; margin-top: 2px; }
+        .category-item .cat-level { display: inline-block; background: #e0e7ff; color: #3730a3; font-size: 10px; padding: 1px 5px; border-radius: 3px; margin-right: 4px; }
+        .category-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 0; min-height: 32px; }
+        .category-tag {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: #eef2ff; color: #3730a3; padding: 4px 8px;
+            border-radius: 4px; font-size: 12px;
+        }
+        .category-tag .tag-remove {
+            cursor: pointer; color: #6b7280; font-weight: bold;
+        }
+        .category-tag .tag-remove:hover { color: #dc2626; }
+
+        /* ===== 3 级类目树形选择 ===== */
+        .cat-tree-picker {
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: #fff;
+            margin-top: 6px;
+            overflow: visible;
+            position: relative;
+        }
+        .cat-tree-toolbar {
+            display: flex; flex-direction: column; gap: 6px;
+            padding: 6px 8px; background: #f9fafb; border-bottom: 1px solid #e5e7eb;
+        }
+        .cat-tree-toolbar input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px 8px; border: 1px solid #d1d5db; border-radius: 4px; font-size: 12px;
+        }
+        .cat-tree-actions { display: flex; gap: 4px; }
+        .cat-tree-actions button {
+            padding: 3px 8px; border: 1px solid #d1d5db; background: #fff;
+            border-radius: 4px; cursor: pointer; font-size: 12px; color: #374151;
+        }
+        .cat-tree-actions button:hover { background: #f3f4f6; }
+        .cat-tree-cols {
+            display: block;
+            height: 360px;
+            border-top: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        .cat-tree-col {
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 4px 0;
+            background: #fff;
+            min-width: 0;
+        }
+        .cat-tree-col:last-child { border-right: none; }
+        /* L1 栏固定占整行, hover 高亮行 */
+        .cat-tree-col#catColL1 {
+            height: 100%;
+            overflow-y: auto;
+        }
+        .cat-tree-col#catColL1 .cat-node {
+            padding: 7px 14px;
+            cursor: pointer;
+            transition: background 0.12s;
+        }
+        .cat-tree-col#catColL1 .cat-node:hover {
+            background: #f0f4ff;
+        }
+
+        /* 弹层 (浮在 L1 上, 不挤压布局) */
+        .cat-tree-popup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            border-radius: 6px;
+            pointer-events: none; /* 让子面板单独接收 hover */
+        }
+        .cat-tree-popup.show {
+            display: flex;
+            pointer-events: auto;
+        }
+        .cat-tree-popup-pane {
+            width: 240px;
+            height: 360px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            padding: 4px 0;
+            display: none;
+            flex-direction: column;
+        }
+        .cat-tree-popup.show .cat-tree-popup-pane.show {
+            display: flex;
+        }
+        .cat-tree-popup-pane:not(:first-child) {
+            border-left: none;
+        }
+        .cat-tree-popup-pane + .cat-tree-popup-pane {
+            border-radius: 0 6px 6px 0;
+        }
+        .cat-tree-popup-pane:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+        .cat-tree-popup-pane:only-child {
+            border-radius: 6px;
+            border-left: 1px solid #e5e7eb;
+        }
+        .cat-tree-col:empty::before {
+            content: "暂无数据";
+            display: block;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 12px;
+            padding: 20px 8px;
+        }
+        .cat-tree-col-header {
+            padding: 6px 10px;
+            background: #f3f4f6;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .cat-node {
+            display: flex; align-items: center; gap: 4px;
+            padding: 5px 8px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 13px;
+            color: #1f2937;
+            transition: background 0.1s;
+        }
+        .cat-node:hover { background: #f3f4f6; }
+        .cat-node.active { background: #eff6ff; color: #1d4ed8; font-weight: 500; }
+        .cat-node .cat-toggle {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 14px; height: 14px;
+            color: #6b7280; font-size: 10px; flex-shrink: 0;
+        }
+        .cat-node .cat-toggle.placeholder { visibility: hidden; }
+        .cat-node .cat-name {
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;
+        }
+        .cat-node .cat-name .cat-en { color: #9ca3af; font-size: 11px; margin-left: 4px; }
+        /* checkbox */
+        .cat-checkbox {
+            width: 14px; height: 14px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 3px;
+            background: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .cat-checkbox.checked { background: #2563eb; border-color: #2563eb; color: #fff; }
+        .cat-checkbox.indeterminate { background: #2563eb; border-color: #2563eb; }
+        .cat-checkbox.indeterminate::after {
+            content: ""; display: block;
+            width: 8px; height: 2px; background: #fff;
+        }
+        .cat-checkbox.checked::after {
+            content: ""; display: block;
+            width: 4px; height: 8px;
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg) translate(-1px, -1px);
+        }
+        .cat-node.search-hit { background: #fef3c7; }
+        .cat-node.search-hit.active { background: #fde68a; color: #92400e; }
+        .cat-node.search-fade { opacity: 0.35; }
+        .cat-node.has-selection { background: #f8fafc; }
+        .cat-node:hover.has-selection { background: #eff6ff; }
+        .cat-node .cat-name { line-height: 1.4; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ozon 商品查询</h1>
+
+        <div class="card">
+            <div class="card-title">筛选条件</div>
+
+            <!-- 基础设置 -->
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <label>最大页数</label>
+                    <input type="number" id="maxPages" value="2" min="1" max="1000">
+                </div>
+                <div class="filter-item">
+                    <label>配送方式</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="fulfillment" value="OZON"> OZON <span class="badge-local">本土</span></label>
+                        <label><input type="checkbox" name="fulfillment" value="FBO"> FBO <span class="badge-local">本土</span></label>
+                        <label><input type="checkbox" name="fulfillment" value="FBS"> FBS <span class="badge-local">本土</span></label>
+                        <label><input type="checkbox" name="fulfillment" value="RFBS"> RFBS <span class="badge-cross">跨境</span></label>
+                        <label><input type="checkbox" name="fulfillment" value="FBP"> FBP <span class="badge-cross">跨境</span></label>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <label>搜索日期</label>
+                    <input type="date" id="searchDate">
+                </div>
+                <div class="filter-item">
+                    <label>创建日期</label>
+                    <select id="creationDate">
+                        <option value="">不筛选</option>
+                        <option value="1">近30天</option>
+                        <option value="3">近90天</option>
+                        <option value="6">近180天</option>
+                        <option value="12">近1年</option>
+                        <option value="24">近2年</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>变体合并</label>
+                    <select id="variationsMerge">
+                        <option value="0">不合并</option>
+                        <option value="1">合并</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>关键词</label>
+                    <input type="text" id="keywords" placeholder="多个用逗号分隔">
+                </div>
+                <div class="filter-item" style="position: relative;">
+                    <label>类目 (3 级树形选择, 只提交三级类目)</label>
+                    <div id="categoryTreePicker" class="cat-tree-picker">
+                        <div class="cat-tree-toolbar">
+                            <input type="text" id="catTreeSearch" placeholder="搜索类目名 (中/英/俄/ID) ..." autocomplete="off">
+                            <div class="cat-tree-actions">
+                                <button type="button" id="catTreeExpandAll">展开</button>
+                                <button type="button" id="catTreeCollapseAll">收起</button>
+                                <button type="button" id="catTreeClear">清空</button>
+                            </div>
+                        </div>
+                        <div class="cat-tree-cols" id="catTreeCols">
+                            <div class="cat-tree-col" id="catColL1" data-level="1">
+                                <div class="cat-tree-col-header">一级类目</div>
+                            </div>
+                        </div>
+                        <!-- 弹层: picker 的子, cols 的兄弟 (用绝对定位贴合 cols 右边缘) -->
+                        <div class="cat-tree-popup" id="catTreePopup">
+                            <div class="cat-tree-popup-pane" id="catPaneL2" data-level="2">
+                                <div class="cat-tree-col-header">二级类目 <span class="cat-pane-hint" id="catPaneL2Hint"></span></div>
+                            </div>
+                            <div class="cat-tree-popup-pane" id="catPaneL3" data-level="3">
+                                <div class="cat-tree-col-header">三级类目 <span class="cat-pane-hint" id="catPaneL3Hint"></span></div>
+                            </div>
+                        </div>
+                        <div id="categoryTags" class="category-tags"></div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <label>标签(数字)</label>
+                    <input type="text" id="labels" placeholder="0:新品 1:正品 2:畅销品，多个逗号分隔">
+                </div>
+                <div class="filter-item">
+                    <label>过滤商品</label>
+                    <select id="filterRemoveProduct">
+                        <option value="true">是</option>
+                        <option value="false">否</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>标签词</label>
+                    <input type="text" id="tag" placeholder="标签词">
+                </div>
+            </div>
+
+            <!-- 价格相关 -->
+            <div class="collapsible open">
+                <div class="collapsible-header" onclick="toggleSection(this)">价格相关 <span>▼</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>价格最小值</label>
+                            <input type="number" id="price_min" placeholder="如: 100">
+                        </div>
+                        <div class="filter-item">
+                            <label>价格最大值</label>
+                            <input type="number" id="price_max" placeholder="如: 1000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 销量相关 -->
+            <div class="collapsible open">
+                <div class="collapsible-header" onclick="toggleSection(this)">销量相关 <span>▼</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>月收入最小值</label>
+                            <input type="number" id="monthlyRevenue_min" placeholder="如: 10000">
+                        </div>
+                        <div class="filter-item">
+                            <label>月收入最大值</label>
+                            <input type="number" id="monthlyRevenue_max" placeholder="如: 100000">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>月销量最小值</label>
+                            <input type="number" id="monthlySales_min" placeholder="如: 10">
+                        </div>
+                        <div class="filter-item">
+                            <label>月销量最大值</label>
+                            <input type="number" id="monthlySales_max" placeholder="如: 1000">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>月销售率最小值</label>
+                            <input type="number" id="monthlySalesRate_min" placeholder="0-1" step="0.01">
+                        </div>
+                        <div class="filter-item">
+                            <label>月销售率最大值</label>
+                            <input type="number" id="monthlySalesRate_max" placeholder="0-1" step="0.01">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评论相关 -->
+            <div class="collapsible open">
+                <div class="collapsible-header" onclick="toggleSection(this)">评论相关 <span>▼</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>评论数最小值</label>
+                            <input type="number" id="reviewCount_min" placeholder="如: 10">
+                        </div>
+                        <div class="filter-item">
+                            <label>评论数最大值</label>
+                            <input type="number" id="reviewCount_max" placeholder="如: 100">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>商品评分最小值</label>
+                            <input type="number" id="reviewRating_min" placeholder="1-5" step="0.1">
+                        </div>
+                        <div class="filter-item">
+                            <label>商品评分最大值</label>
+                            <input type="number" id="reviewRating_max" placeholder="1-5" step="0.1">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>DRR评分最小值</label>
+                            <input type="number" id="drr_min" placeholder="如: 0.5" step="0.01">
+                        </div>
+                        <div class="filter-item">
+                            <label>DRR评分最大值</label>
+                            <input type="number" id="drr_max" placeholder="如: 1" step="0.01">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>问答数量最小值</label>
+                            <input type="number" id="questionsAndAnswers_min" placeholder="如: 1">
+                        </div>
+                        <div class="filter-item">
+                            <label>问答数量最大值</label>
+                            <input type="number" id="questionsAndAnswers_max" placeholder="如: 100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 物理属性 -->
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleSection(this)">物理属性 <span>▶</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>重量最小值(kg)</label>
+                            <input type="number" id="weight_min" placeholder="如: 0.1" step="0.01">
+                        </div>
+                        <div class="filter-item">
+                            <label>重量最大值(kg)</label>
+                            <input type="number" id="weight_max" placeholder="如: 10" step="0.01">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>体积最小值</label>
+                            <input type="number" id="volume_min" placeholder="如: 0.001">
+                        </div>
+                        <div class="filter-item">
+                            <label>体积最大值</label>
+                            <input type="number" id="volume_max" placeholder="如: 1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 财务相关 -->
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleSection(this)">财务相关 <span>▶</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>毛利率最小值(0-1)</label>
+                            <input type="number" id="grossMargin_min" placeholder="如: 0.1" step="0.01">
+                        </div>
+                        <div class="filter-item">
+                            <label>毛利率最大值(0-1)</label>
+                            <input type="number" id="grossMargin_max" placeholder="如: 0.5" step="0.01">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他属性 -->
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleSection(this)">其他属性 <span>▶</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>变体数量最小值</label>
+                            <input type="number" id="variants_min" placeholder="如: 1">
+                        </div>
+                        <div class="filter-item">
+                            <label>变体数量最大值</label>
+                            <input type="number" id="variants_max" placeholder="如: 10">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>PDP转化率最小值</label>
+                            <input type="number" id="convToCartPdp_min" placeholder="0-1" step="0.01">
+                        </div>
+                        <div class="filter-item">
+                            <label>PDP转化率最大值</label>
+                            <input type="number" id="convToCartPdp_max" placeholder="0-1" step="0.01">
+                        </div>
+                    </div>
+                    <div class="filter-row" style="margin-top: 12px;">
+                        <div class="filter-item">
+                            <label>退货/取消率最小值</label>
+                            <input type="number" id="returnCancellationRate_min" placeholder="0-1" step="0.01">
+                        </div>
+                        <div class="filter-item">
+                            <label>退货/取消率最大值</label>
+                            <input type="number" id="returnCancellationRate_max" placeholder="0-1" step="0.01">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 品牌 -->
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleSection(this)">品牌筛选 <span>▶</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>品牌类型</label>
+                            <select id="brand_type">
+                                <option value="0">包含</option>
+                                <option value="1">排除</option>
+                                <option value="2">无品牌</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>品牌名称(逗号分隔)</label>
+                            <input type="text" id="brandName" placeholder="如: Sony, Samsung">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卖家/SKU -->
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleSection(this)">卖家/SKU筛选 <span>▶</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-item" style="margin-bottom: 12px;">
+                        <label>卖家名称(逗号分隔)</label>
+                        <input type="text" id="sellerName" placeholder="如: Seller1, Seller2">
+                    </div>
+                    <div class="filter-item">
+                        <label>SKU列表(逗号分隔)</label>
+                        <input type="text" id="skus" placeholder="如: SKU001, SKU002">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 排序 -->
+            <div class="collapsible">
+                <div class="collapsible-header" onclick="toggleSection(this)">排序设置 <span>▶</span></div>
+                <div class="collapsible-content">
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label>排序字段</label>
+                            <select id="sortField">
+                                <option value="revenue">收入</option>
+                                <option value="sales">销量</option>
+                                <option value="reviewCount">评论数</option>
+                                <option value="price">价格</option>
+                                <option value="reviewRating">评分</option>
+                                <option value="grossMargin">毛利率</option>
+                                <option value="monthlySales">月销量</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>排序方向</label>
+                            <select id="sortDirection">
+                                <option value="DESC">降序</option>
+                                <option value="ASC">升序</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-primary" id="btnQuery" onclick="doQuery()">开始查询</button>
+                <button class="btn btn-secondary" id="btnExport" onclick="exportData()" disabled>导出 CSV</button>
+            </div>
+            <div id="statusBar" class="status-bar"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">查询结果</div>
+            <div id="resultsCount"></div>
+            <div id="resultsArea"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/query';
+        const CATEGORY_API = '/api/category';
+        let currentData = [];
+
+        // 已选三级类目 ID 集合 (提交参数时只用这一份)
+        let selectedCategoryIds = new Set();
+        // 弹层 pin 状态 (展开按钮强制开启; 收起按钮关闭)
+        let pinned = false;
+        // L1 列表收起状态 (true: 只显示有选/有命中/当前 hover 的 L1; false: 全部显示)
+        let collapseL1 = false;
+        // 当前搜索命中 L1 的 id 集合 (用于收起态时仍显示命中项)
+        let searchHitsL1 = new Set();
+        // 当前显示的 L1 / L2 (跨函数共享, 让按钮 onclick 能访问)
+        let currentL1Id = null, currentL2Id = null;
+
+        function toggleSection(header) {
+            header.parentElement.classList.toggle('open');
+            const arrow = header.querySelector('span');
+            arrow.textContent = header.parentElement.classList.contains('open') ? '▼' : '▶';
+        }
+
+        function parseNumber(val) {
+            if (!val || val === '') return null;
+            const num = parseFloat(val);
+            return isNaN(num) ? null : num;
+        }
+
+        function parseArray(val) {
+            if (!val || val === '') return [];
+            return val.split(',').map(s => s.trim()).filter(s => s);
+        }
+
+        // ============================================================
+        // 3 级类目树形选择器 - 横向三栏并排 (L1 | L2 | L3 各自全集视图)
+        // ============================================================
+        let categoryTree = [];
+        let l1Nodes = [];           // 一级节点 (含 children)
+        let l2Flat = [];            // 二级节点扁平 (跨多个一级)
+        let l3Flat = [];            // 三级节点扁平
+        let l3ByL2 = {};            // L2.id -> [L3, ...]
+        let l2ByL1 = {};            // L1.id -> [L2, ...]
+
+        function rebuildFlatIndex() {
+            l2Flat = [];
+            l3Flat = [];
+            l3ByL2 = {};
+            l2ByL1 = {};
+            function walk(node, parentL1, parentL2) {
+                const lvl = node.level || (parentL2 ? 3 : parentL1 ? 2 : 1);
+                if (lvl === 2) {
+                    l2Flat.push(node);
+                    l2ByL1[node.parent_id] = l2ByL1[node.parent_id] || [];
+                    l2ByL1[node.parent_id].push(node);
+                } else if (lvl === 3) {
+                    l3Flat.push(node);
+                    l3ByL2[node.parent_id] = l3ByL2[node.parent_id] || [];
+                    l3ByL2[node.parent_id].push(node);
+                }
+                (node.children || []).forEach(c => walk(c, parentL1 || node, parentL2 || node));
+            }
+            l1Nodes.forEach(n => walk(n, null, null));
+        }
+
+        function initCategorySelector() {
+            fetch('/api/category/tree')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.code === 200 && data.data && data.data.tree) {
+                        categoryTree = data.data.tree;
+                        l1Nodes = categoryTree;
+                        rebuildFlatIndex();
+                        renderColumn(1);
+                        bindHoverEvents();
+                    } else {
+                        document.getElementById('catColL1').textContent = '加载失败: ' + (data.msg || '');
+                    }
+                })
+                .catch(err => {
+                    console.error('加载类目失败:', err);
+                    document.getElementById('catColL1').textContent = '加载类目失败';
+                });
+
+            // 初始化按钮状态
+                updateCollapseButtons();
+
+            let searchTimer = null;
+            document.getElementById('catTreeSearch').addEventListener('input', e => {
+                clearTimeout(searchTimer);
+                const q = e.target.value.trim();
+                if (!q) {
+                    searchHitsL1 = new Set();
+                    renderColumn(1);
+                    return;
+                }
+                searchTimer = setTimeout(() => highlightSearch(q), 200);
+            });
+
+            document.getElementById('catTreeExpandAll').onclick = () => {
+                document.getElementById('catTreeSearch').value = '';
+                searchHitsL1 = new Set();
+                // 展开: L1 全部显示, 关闭 popup 回到 hover 触发
+                collapseL1 = false;
+                pinned = false;
+                if (typeof window._catHidePopup === 'function') window._catHidePopup();
+                renderColumn(1);
+                updateCollapseButtons();
+            };
+            document.getElementById('catTreeCollapseAll').onclick = () => {
+                // 收起: L1 只显示有选/有命中/当前 hover 的项
+                collapseL1 = true;
+                pinned = false;
+                if (typeof window._catHidePopup === 'function') window._catHidePopup();
+                renderColumn(1);
+                updateCollapseButtons();
+            };
+            document.getElementById('catTreeClear').onclick = () => {
+                selectedCategoryIds.clear();
+                if (typeof window._catHidePopup === 'function') window._catHidePopup();
+                // 清空后若在收起态, 没有已选项, 自动回到展开态以避免空白
+                if (collapseL1 && selectedCategoryIds.size === 0) {
+                    collapseL1 = false;
+                    updateCollapseButtons();
+                }
+                renderColumn(1);
+                renderCategoryTags();
+            };
+        }
+
+        function updateCollapseButtons() {
+            const expandBtn = document.getElementById('catTreeExpandAll');
+            const collapseBtn = document.getElementById('catTreeCollapseAll');
+            if (expandBtn) {
+                expandBtn.style.opacity = collapseL1 ? '1' : '0.5';
+                expandBtn.style.fontWeight = collapseL1 ? '600' : 'normal';
+            }
+            if (collapseBtn) {
+                collapseBtn.style.opacity = collapseL1 ? '0.5' : '1';
+                collapseBtn.style.fontWeight = collapseL1 ? 'normal' : '600';
+            }
+        }
+
+        // ============================================================
+        // 弹层式 hover (Element Cascader 风格)
+        //   - L1 节点 hover → 弹层整体 show, 渲染该 L1 的二级
+        //   - L2 节点 hover → L3 面板 show, 渲染该 L2 的三级
+        //   - 鼠标移出 L1 + L2 + L3 任意一个 → 弹层 hide
+        // ============================================================
+        function hidePopup() {
+            const popup = document.getElementById('catTreePopup');
+            const paneL2 = document.getElementById('catPaneL2');
+            const paneL3 = document.getElementById('catPaneL3');
+            if (popup) popup.classList.remove('show');
+            if (paneL2) paneL2.classList.remove('show');
+            if (paneL3) paneL3.classList.remove('show');
+            window._catCurrentL1 = null;
+            window._catCurrentL2 = null;
+        }
+
+        function bindHoverEvents() {
+            const cols = document.getElementById('catTreeCols');
+            const popup = document.getElementById('catTreePopup');
+            const l1Col = document.getElementById('catColL1');
+            const paneL2 = document.getElementById('catPaneL2');
+            const paneL3 = document.getElementById('catPaneL3');
+            const hintL2 = document.getElementById('catPaneL2Hint');
+            const hintL3 = document.getElementById('catPaneL3Hint');
+
+            // picker 容器 (包含 toolbar + cols + popup + tags)
+            const picker = document.getElementById('categoryTreePicker');
+
+            let hideTimer = null;
+
+            function positionPopup(anchorEl) {
+                const colsRect = cols.getBoundingClientRect();
+                const pickerRect = picker.getBoundingClientRect();
+                // popup 顶部对齐 cols 顶部 (固定不跟随 hover 节点滚动)
+                const colsTopOffset = colsRect.top - pickerRect.top;
+                popup.style.top = colsTopOffset + 'px';
+                popup.style.left = (colsRect.right - pickerRect.left) + 'px';
+                popup.style.maxHeight = colsRect.height + 'px';
+            }
+
+            function showPaneL2(l1Id, anchorEl) {
+                cancelHide();
+                currentL1Id = l1Id;
+                currentL2Id = null;
+                window._catCurrentL1 = l1Id;
+                window._catCurrentL2 = null;
+                const parent = findNode(l1Nodes, l1Id);
+                if (!parent) return;
+                hintL2.textContent = `· ${parent.zh}`;
+                const items = l2ByL1[l1Id] || [];
+                const html = items.map(n => renderNode(n, 2)).join('');
+                const header = paneL2.querySelector('.cat-tree-col-header');
+                paneL2.innerHTML = '';
+                if (header) paneL2.appendChild(header);
+                paneL2.insertAdjacentHTML('beforeend', html);
+
+                paneL2.classList.add('show');
+                paneL3.classList.remove('show');
+                popup.classList.add('show');
+
+                positionPopup(anchorEl);
+            }
+
+            function showPaneL3(l2Id, anchorEl) {
+                cancelHide();
+                currentL2Id = l2Id;
+                window._catCurrentL2 = l2Id;
+                const parent = findNode(l1Nodes, l2Id);
+                if (!parent) return;
+                hintL3.textContent = `· ${parent.zh}`;
+                const items = l3ByL2[l2Id] || [];
+                const html = items.map(n => renderNode(n, 3)).join('');
+                const header = paneL3.querySelector('.cat-tree-col-header');
+                paneL3.innerHTML = '';
+                if (header) paneL3.appendChild(header);
+                paneL3.insertAdjacentHTML('beforeend', html);
+
+                paneL3.classList.add('show');
+                positionPopup(anchorEl);
+            }
+
+            function cancelHide() {
+                if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+            }
+
+            function scheduleHide() {
+                if (pinned) return;
+                cancelHide();
+                hideTimer = setTimeout(() => {
+                    // 只有 popup 完全没被 hover 时才隐藏
+                    if (!popup.matches(':hover')) {
+                        popup.classList.remove('show');
+                        paneL2.classList.remove('show');
+                        paneL3.classList.remove('show');
+                        window._catCurrentL1 = null;
+                        window._catCurrentL2 = null;
+                        currentL1Id = null;
+                        currentL2Id = null;
+                    }
+                }, 120);
+            }
+
+            // 暴露给外部 onclick 用 (展开/收起/清空按钮)
+            window._catShowPaneL2 = showPaneL2;
+            window._catHidePopup = () => {
+                popup.classList.remove('show');
+                paneL2.classList.remove('show');
+                paneL3.classList.remove('show');
+                window._catCurrentL1 = null;
+                window._catCurrentL2 = null;
+                currentL1Id = null;
+                currentL2Id = null;
+            };
+
+            // 监听 popup 上的 mouseenter/mouseleave, 控制 hide
+            popup.addEventListener('mouseenter', cancelHide);
+            popup.addEventListener('mouseleave', scheduleHide);
+
+            // L1 节点 mouseover
+            l1Col.addEventListener('mouseover', e => {
+                const node = e.target.closest('.cat-node');
+                if (!node) return;
+                if (parseInt(node.dataset.level, 10) !== 1) return;
+                if (currentL1Id === node.dataset.id && paneL2.classList.contains('show')) {
+                    cancelHide();
+                    return;
+                }
+                showPaneL2(node.dataset.id, node);
+            });
+
+            // 鼠标离开整个 picker → 才考虑隐藏
+            picker.addEventListener('mouseleave', () => {
+                scheduleHide();
+            });
+
+            // L2 节点 mouseover
+            paneL2.addEventListener('mouseover', e => {
+                const node = e.target.closest('.cat-node');
+                if (!node) return;
+                if (parseInt(node.dataset.level, 10) !== 2) return;
+                cancelHide();
+                if (currentL2Id === node.dataset.id && paneL3.classList.contains('show')) return;
+                showPaneL3(node.dataset.id, node);
+            });
+        }
+
+        // 显示指定父节点下的子级类目到对应栏 (保留兼容老调用)
+        function showColumnForLevel(level, parentId) {
+            const colId = {2: 'catPaneL2', 3: 'catPaneL3'}[level];
+            const col = document.getElementById(colId);
+            if (!col) return;
+
+            const parent = findNode(l1Nodes, parentId);
+            if (!parent) return;
+
+            const items = level === 2
+                ? l2ByL1[parent.id] || []
+                : (() => {
+                    const l2List = l2ByL1[parent.parent_id] || [];
+                    const targetL2 = l2List.find(n => n.id === parent.id);
+                    return targetL2 ? (l3ByL2[parent.id] || []) : [];
+                })();
+
+            const html = items.map(n => renderNode(n, level)).join('');
+            const header = col.querySelector('.cat-tree-col-header');
+            col.innerHTML = '';
+            if (header) col.appendChild(header);
+            col.insertAdjacentHTML('beforeend', html);
+        }
+
+        function findNode(list, id) {
+            for (const n of list) {
+                if (n.id === id) return n;
+                const c = findNode(n.children || [], id);
+                if (c) return c;
+            }
+            return null;
+        }
+
+        // 收集一个节点下所有 3 级 ID (递归)
+        function collectLevel3Ids(node, out) {
+            if (out === undefined) out = [];
+            const children = node.children || [];
+            if (children.length === 0) {
+                out.push(node.id);
+            } else {
+                children.forEach(c => collectLevel3Ids(c, out));
+            }
+            return out;
+        }
+
+        // 收集一级节点下所有二级 ID
+        function collectLevel2Ids(node, out) {
+            if (out === undefined) out = [];
+            (node.children || []).forEach(c => {
+                out.push(c.id);
+                collectLevel2Ids(c, out);
+            });
+            return out;
+        }
+
+        // 渲染 L1 (始终全部显示)
+        function renderColumn(level) {
+            const colId = {1: 'catColL1'}[level];
+            if (!colId) return;
+            const col = document.getElementById(colId);
+            if (!col) return;
+
+            let items = l1Nodes;
+            // 收起态: 只显示有 L3 被选中 / 被搜索命中 / 是当前 L1 的 L1
+            if (collapseL1) {
+                items = l1Nodes.filter(n => {
+                    // 有 L3 被选中
+                    const l3Ids = collectLevel3Ids(n);
+                    if (l3Ids.some(id => selectedCategoryIds.has(id))) return true;
+                    // 搜索命中
+                    if (searchHitsL1.has(n.id)) return true;
+                    // 当前 hover / pin 的 L1
+                    if (currentL1Id === n.id) return true;
+                    return false;
+                });
+            }
+            const html = items.map(n => renderNode(n, 1)).join('');
+            const header = col.querySelector('.cat-tree-col-header');
+            col.innerHTML = '';
+            if (header) col.appendChild(header);
+            if (items.length === 0) {
+                col.insertAdjacentHTML('beforeend', '<div style="padding:14px;color:#9ca3af;font-size:12px;text-align:center;">(已收起, 无已选/匹配项)</div>');
+            } else {
+                col.insertAdjacentHTML('beforeend', html);
+            }
+        }
+
+        function renderNode(node, level) {
+            const l3Ids = collectLevel3Ids(node);
+            const total = l3Ids.length;
+            let state = 'none';
+            let selectedCount = 0;
+            if (total > 0) {
+                selectedCount = l3Ids.filter(id => selectedCategoryIds.has(id)).length;
+                if (selectedCount === 0) state = 'none';
+                else if (selectedCount === total) state = 'checked';
+                else state = 'indeterminate';
+            } else {
+                state = selectedCategoryIds.has(node.id) ? 'checked' : 'none';
+            }
+
+            const cbClass = `cat-checkbox ${state === 'checked' ? 'checked' : ''} ${state === 'indeterminate' ? 'indeterminate' : ''}`;
+
+            const displayName = node.zh || node.en || node.ru || node.id;
+            const enLabel = node.en && node.zh ? `<span class="cat-en">${escapeHtml(node.en)}</span>` : '';
+
+            // 突出显示: 该节点有被选中或包含选中状态
+            const highlightCls = (state !== 'none') ? 'has-selection' : '';
+
+            return `
+                <div class="cat-node ${highlightCls}" data-id="${escapeHtml(node.id)}" data-level="${level}">
+                    <span class="${cbClass}" data-toggle-cb="1"></span>
+                    <span class="cat-name">${escapeHtml(displayName)}${enLabel}</span>
+                </div>
+            `;
+        }
+
+        // 复选框点击处理 - 父子联动
+        function toggleCategory(nodeId, level) {
+            const node = findNode(l1Nodes, nodeId);
+            if (!node) return;
+
+            const l3Ids = collectLevel3Ids(node);
+            const total = l3Ids.length;
+            const selectedCount = l3Ids.filter(id => selectedCategoryIds.has(id)).length;
+            const allSelected = total > 0 && selectedCount === total;
+
+            if (allSelected) {
+                l3Ids.forEach(id => selectedCategoryIds.delete(id));
+            } else {
+                l3Ids.forEach(id => selectedCategoryIds.add(id));
+            }
+            renderColumn(1);
+            // 刷新弹层 (如有显示)
+            if (typeof window._refreshPopup === 'function') window._refreshPopup();
+            renderCategoryTags();
+        }
+
+        // 列点击事件委托 (没有展开/收起三角, 单纯的勾选 + 高亮)
+        document.addEventListener('click', e => {
+            const cbEl = e.target.closest('[data-toggle-cb]');
+            const node = e.target.closest('.cat-node');
+            if (!node) return;
+            const id = node.dataset.id;
+            const level = parseInt(node.dataset.level, 10);
+
+            // 复选框区域 = 切换该节点勾选
+            if (cbEl) {
+                e.stopPropagation();
+                toggleCategory(id, level);
+            }
+            // 行点击 = 切换该节点勾选 (整行都可点)
+            else {
+                toggleCategory(id, level);
+            }
+        });
+
+        function highlightSearch(q) {
+            const ql = q.toLowerCase();
+            const hitsL1 = [], hitsL2 = [], hitsL3 = [];
+            function checkText(n) {
+                return (n.zh && n.zh.toLowerCase().includes(ql)) ||
+                       (n.en && n.en.toLowerCase().includes(ql)) ||
+                       (n.ru && n.ru.toLowerCase().includes(ql)) ||
+                       (n.id && n.id.includes(ql));
+            }
+            l1Nodes.forEach(n => { if (checkText(n)) hitsL1.push(n); });
+            l2Flat.forEach(n => { if (checkText(n)) hitsL2.push(n); });
+            l3Flat.forEach(n => { if (checkText(n)) hitsL3.push(n); });
+
+            // 记录 L1 命中集合 (供收起态使用)
+            searchHitsL1 = new Set(hitsL1.map(n => n.id));
+            // 收起 L2/L3, 重新渲染 L1
+            hidePopup();
+            renderColumn(1);
+
+            if (!hitsL1.length && !hitsL2.length && !hitsL3.length) return;
+
+            // 高亮 L1 命中项
+            const hitL1Ids = new Set(hitsL1.map(n => n.id));
+            document.querySelectorAll('#catColL1 .cat-node').forEach(el => {
+                el.classList.remove('search-hit', 'search-fade');
+                if (hitL1Ids.has(el.dataset.id)) el.classList.add('search-hit');
+                else el.classList.add('search-fade');
+            });
+
+            // 如果搜索有结果, 把命中的 L2/L3 一次性展开显示
+            if (hitsL2.length || hitsL3.length) {
+                // 取涉及的 L1 / L2
+                const l1IdsWithHits = new Set();
+                hitsL2.forEach(n => l1IdsWithHits.add(n.parent_id));
+                hitsL3.forEach(n => {
+                    const l2Node = l2Flat.find(x => x.id === n.parent_id);
+                    if (l2Node) l1IdsWithHits.add(l2Node.parent_id);
+                });
+
+                const l2IdsWithHits = new Set(hitsL2.map(n => n.id));
+                hitsL3.forEach(n => l2IdsWithHits.add(n.parent_id));
+
+                // 把命中的 L1 在 L1 列表里标高亮+取消淡化
+                l1IdsWithHits.forEach(id => {
+                    const el = document.querySelector(`#catColL1 .cat-node[data-id="${cssEscape(id)}"]`);
+                    if (el) {
+                        el.classList.remove('search-fade');
+                        el.classList.add('search-hit');
+                    }
+                });
+
+                // 展开 L2: 把涉及 L1 的所有二级都列出 (高亮命中的)
+                const allL2ForHits = [];
+                l1IdsWithHits.forEach(l1id => {
+                    (l2ByL1[l1id] || []).forEach(n => {
+                        allL2ForHits.push({ n, hit: l2IdsWithHits.has(n.id) });
+                    });
+                });
+                renderHitsColumn(2, allL2ForHits);
+
+                // 展开 L3: 把涉及 L2 的所有三级都列出
+                const allL3ForHits = [];
+                l2IdsWithHits.forEach(l2id => {
+                    (l3ByL2[l2id] || []).forEach(n => {
+                        allL3ForHits.push({ n, hit: true });
+                    });
+                });
+                if (allL3ForHits.length) renderHitsColumn(3, allL3ForHits);
+            }
+        }
+
+        function renderHitsColumn(level, hits) {
+            const colId = {2: 'catPaneL2', 3: 'catPaneL3'}[level];
+            const col = document.getElementById(colId);
+            if (!col) return;
+            const html = hits.map(({n, hit}) => {
+                const cls = hit ? 'search-hit' : 'search-fade';
+                return renderNode(n, level).replace('<div class="cat-node', `<div class="cat-node ${cls}`);
+            }).join('');
+            const header = col.querySelector('.cat-tree-col-header');
+            col.innerHTML = '';
+            if (header) col.appendChild(header);
+            col.insertAdjacentHTML('beforeend', html);
+            // 搜索时强制展开弹层 (放 L1 旁边, top=0)
+            const popup = document.getElementById('catTreePopup');
+            const cols = document.getElementById('catTreeCols');
+            popup.style.top = '0';
+            popup.style.left = cols.offsetWidth + 'px';
+            popup.classList.add('show');
+            col.classList.add('show');
+            if (level === 3) {
+                document.getElementById('catPaneL2').classList.add('show');
+            }
+        }
+
+        function cssEscape(s) {
+            return (s || '').replace(/[\\"]/g, '\\$&');
+        }
+
+        function escapeHtml(str) {
+            return (str || '').replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
+        }
+
+        function renderCategoryTags() {
+            const container = document.getElementById('categoryTags');
+            if (!container) return;
+            if (!selectedCategoryIds.size) {
+                container.innerHTML = '';
+                return;
+            }
+            // 只显示统计数字, 不显示具体名字 (避免页面过长)
+            container.innerHTML = `
+                <span style="font-size:12px;color:#6b7280;align-self:center;padding:4px 8px;">
+                    已选 ${selectedCategoryIds.size} 个三级类目
+                </span>
+            `;
+        }
+
+        // 标签删除按钮
+        document.addEventListener('click', e => {
+            const rm = e.target.closest('[data-remove-id]');
+            if (!rm) return;
+            const id = rm.dataset.removeId;
+            selectedCategoryIds.delete(id);
+            renderColumn(1);
+            if (typeof window._refreshPopup === 'function') window._refreshPopup();
+            renderCategoryTags();
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initCategorySelector();
+        });
+
+        function buildFilter() {
+            const custom_filter = {};
+
+            // ===== 范围类参数 =====
+            const rangeParams = [
+                ['price_min', 'price_max', 'price'],
+                ['reviewCount_min', 'reviewCount_max', 'reviewCount'],
+                ['reviewRating_min', 'reviewRating_max', 'reviewRating'],
+                ['drr_min', 'drr_max', 'drr'],
+                ['questionsAndAnswers_min', 'questionsAndAnswers_max', 'questionsAndAnswers'],
+                ['monthlyRevenue_min', 'monthlyRevenue_max', 'monthlyRevenue'],
+                ['monthlySales_min', 'monthlySales_max', 'monthlySales'],
+                ['monthlySalesRate_min', 'monthlySalesRate_max', 'monthlySalesRate'],
+                ['weight_min', 'weight_max', 'weight'],
+                ['volume_min', 'volume_max', 'volume'],
+                ['grossMargin_min', 'grossMargin_max', 'grossMargin'],
+                ['variants_min', 'variants_max', 'variants'],
+                ['convToCartPdp_min', 'convToCartPdp_max', 'convToCartPdp'],
+                ['returnCancellationRate_min', 'returnCancellationRate_max', 'returnCancellationRate'],
+            ];
+
+            rangeParams.forEach(([minId, maxId, key]) => {
+                const minVal = parseNumber(document.getElementById(minId).value);
+                const maxVal = parseNumber(document.getElementById(maxId).value);
+                if (minVal !== null || maxVal !== null) {
+                    custom_filter[key] = { min: minVal, max: maxVal };
+                }
+            });
+
+            // ===== 数组类参数 - 始终发送空数组 =====
+            const arrayParams = ['keywords', 'skus', 'sellerName'];
+            arrayParams.forEach(key => {
+                const val = parseArray(document.getElementById(key).value);
+                custom_filter[key] = val;
+            });
+
+            // 类目 - 只提交 3 级类目的中文名称 (后端匹配后组装 categoryIds)
+            const categoryQueries = [];
+            selectedCategoryIds.forEach(id => {
+                const node = findNode(l1Nodes, id);
+                if (node) categoryQueries.push(node.zh || node.en || node.ru || id);
+            });
+            custom_filter.categoryQueries = categoryQueries;
+
+            // 配送类型 - 多选复选框
+            const fulfillmentCheckboxes = document.querySelectorAll('input[name="fulfillment"]:checked');
+            custom_filter.fulfillment = Array.from(fulfillmentCheckboxes).map(cb => cb.value);
+
+            // 标签 (整数: 0=新品, 1=正品, 2=畅销品)
+            const labelsVal = parseArray(document.getElementById('labels').value);
+            custom_filter.labels = labelsVal.map(v => parseInt(v)).filter(v => !isNaN(v));
+
+            // 品牌
+            const brandType = parseInt(document.getElementById('brand_type').value);
+            const brandName = parseArray(document.getElementById('brandName').value);
+            custom_filter.brand = { type: brandType, brandName: brandName };
+
+            // 日期
+            const searchDate = document.getElementById('searchDate').value;
+            custom_filter.searchDate = searchDate || "";
+
+            // 创建日期 (整数: 1=30天, 3=90天, 6=180天, 12=1年, 24=2年)
+            const creationDate = document.getElementById('creationDate').value;
+            custom_filter.creationDate = creationDate ? parseInt(creationDate) : null;
+
+            // 变体合并
+            const variationsMerge = parseInt(document.getElementById('variationsMerge').value);
+            custom_filter.variationsMerge = variationsMerge;
+
+            // 过滤商品
+            const filterRemoveProduct = document.getElementById('filterRemoveProduct').value;
+            custom_filter.filterRemoveProduct = filterRemoveProduct === 'true';
+
+            // 标签词
+            const tag = document.getElementById('tag').value;
+            custom_filter.tag = tag || "";
+
+            return custom_filter;
+        }
+
+        async function doQuery() {
+            const btn = document.getElementById('btnQuery');
+            const statusBar = document.getElementById('statusBar');
+            const resultsArea = document.getElementById('resultsArea');
+
+            btn.disabled = true;
+            btn.textContent = '查询中...';
+            statusBar.style.display = 'none';
+            resultsArea.innerHTML = '<div class="loading">正在查询，请稍候...</div>';
+
+            try {
+                const maxPages = parseInt(document.getElementById('maxPages').value) || 2;
+
+                // 只发送 custom_filter，不包含 page 和 _config
+                const params = buildFilter();
+                params.page = {
+                    pageNumber: 1,
+                    pageSize: 100,
+                    orders: [{ field: 'revenue', direction: 'DESC' }]
+                };
+                params._config = { maxPages: maxPages };
+
+                console.log('发送请求:', JSON.stringify(params, null, 2));
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(params)
+                });
+
+                const data = await response.json();
+
+                if (data.code === 200) {
+                    // 后端返回: { code, msg, data: [...products] }
+                    const products = data.data || [];
+
+                    if (products.length === 0) {
+                        resultsArea.innerHTML = '<div class="loading">没有找到数据</div>';
+                        statusBar.style.display = 'block';
+                        statusBar.className = 'status-bar error';
+                        statusBar.textContent = '未找到匹配的商品';
+                        return;
+                    }
+
+                    currentData = products;
+
+                    document.getElementById('resultsCount').innerHTML =
+                        `<div class="results-info">
+                            <span>共 ${products.length} 条数据</span>
+                            <span>总计 ${products.length} 条</span>
+                        </div>`;
+
+                    renderTable(products);
+
+                    statusBar.style.display = 'block';
+                    statusBar.className = 'status-bar success';
+                    statusBar.textContent = `查询成功！共 ${products.length} 条数据`;
+
+                    document.getElementById('btnExport').disabled = false;
+                } else {
+                    throw new Error(data.msg || '查询失败');
+                }
+            } catch (error) {
+                resultsArea.innerHTML = `<div class="error" style="padding:12px;color:#dc2626">错误: ${error.message}</div>`;
+                statusBar.style.display = 'block';
+                statusBar.className = 'status-bar error';
+                statusBar.textContent = error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '开始查询';
+            }
+        }
+
+        function renderTable(products) {
+            const fields = [
+                { key: 'sku', label: 'SKU', width: 90 },
+                { key: 'title', label: '商品名称', width: 250 },
+                { key: 'price', label: '价格', width: 70 },
+                { key: 'sales', label: '销量', width: 70 },
+                { key: 'revenue', label: '收入', width: 90 },
+                { key: 'monthlySales', label: '月销量', width: 80 },
+                { key: 'monthlyRevenue', label: '月收入', width: 100 },
+                { key: 'reviewRating', label: '评分', width: 55 },
+                { key: 'reviewCount', label: '评论数', width: 70 },
+                { key: 'grossMargin', label: '毛利率', width: 70 },
+                { key: 'weight', label: '重量', width: 60 },
+                { key: 'variants', label: '变体', width: 55 },
+                { key: 'sellerName', label: '卖家', width: 100 },
+                { key: 'brandName', label: '品牌', width: 90 }
+            ];
+
+            let html = '<div class="table-container"><table><thead><tr>';
+            fields.forEach(f => html += `<th style="width:${f.width}px">${f.label}</th>`);
+            html += '</tr></thead><tbody>';
+
+            products.forEach(p => {
+                html += '<tr>';
+                fields.forEach(f => {
+                    let val = p[f.key];
+                    if (f.key === 'price' || f.key === 'revenue' || f.key === 'monthlyRevenue') val = val?.toFixed(2);
+                    if (f.key === 'reviewRating' || f.key === 'grossMargin') val = val?.toFixed(3);
+                    html += `<td>${val ?? '-'}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table></div>';
+            document.getElementById('resultsArea').innerHTML = html;
+        }
+
+        function exportData() {
+            if (currentData.length === 0) return;
+
+            const fields = ['sku', 'title', 'price', 'sales', 'revenue', 'monthlySales', 'monthlyRevenue',
+                'reviewRating', 'reviewCount', 'grossMargin', 'weight', 'variants', 'sellerName', 'brandName'];
+            const headers = ['SKU', '商品名称', '价格', '销量', '收入', '月销量', '月收入',
+                '评分', '评论数', '毛利率', '重量', '变体', '卖家', '品牌'];
+
+            let csv = headers.join(',') + '\n';
+            currentData.forEach(p => {
+                csv += fields.map((f, i) => {
+                    let val = p[f];
+                    if (['title', 'sellerName', 'brandName'].includes(f)) {
+                        return `"${(val || '').replace(/"/g, '""')}"`;
+                    }
+                    if (['price', 'revenue', 'monthlyRevenue'].includes(f)) val = val?.toFixed(2);
+                    if (['reviewRating', 'grossMargin'].includes(f)) val = val?.toFixed(3);
+                    return val ?? '';
+                }).join(',') + '\n';
+            });
+
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ozon_products_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

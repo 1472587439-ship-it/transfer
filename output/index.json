@@ -1,0 +1,58 @@
+{
+  "responses": [
+    {
+      "timestamp": "2026-07-31T16:13:06.265232",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\response_20260731_161306.json",
+      "filename": "response_20260731_161306.json",
+      "record_count": 100
+    },
+    {
+      "timestamp": "2026-07-31T14:34:27.903931",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\response_20260731_143427.json",
+      "filename": "response_20260731_143427.json",
+      "record_count": 200
+    },
+    {
+      "timestamp": "2026-07-31T13:41:00.937905",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\response_20260731_134100.json",
+      "filename": "response_20260731_134100.json",
+      "record_count": 100
+    },
+    {
+      "timestamp": "2026-07-31T12:28:20.153279",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\response_20260731_122820.json",
+      "filename": "response_20260731_122820.json",
+      "record_count": 100
+    },
+    {
+      "timestamp": "2026-07-30T18:39:29.925192",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\profitable_20260730_183929.json",
+      "filename": "profitable_20260730_183929.json",
+      "record_count": 0
+    },
+    {
+      "timestamp": "2026-07-30T18:38:15.150191",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\profitable_20260730_183815.json",
+      "filename": "profitable_20260730_183815.json",
+      "record_count": 0
+    },
+    {
+      "timestamp": "2026-07-30T18:37:58.338005",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\profitable_20260730_183758.json",
+      "filename": "profitable_20260730_183758.json",
+      "record_count": 0
+    },
+    {
+      "timestamp": "2026-07-30T18:00:58.627438",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\response_20260730_180058.json",
+      "filename": "response_20260730_180058.json",
+      "record_count": 0
+    },
+    {
+      "timestamp": "2026-07-30T17:45:57.010992",
+      "filepath": "D:\\work\\production\\program\\transfer\\output\\response_20260730_174557.json",
+      "filename": "response_20260730_174557.json",
+      "record_count": 0
+    }
+  ]
+}

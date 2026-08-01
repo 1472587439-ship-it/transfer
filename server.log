@@ -1,0 +1,414 @@
+2026-07-31 13:12:08,811 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 13:12:08,811 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 13:18:18,273 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 13:18:18,274 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 13:20:04,547 - INFO - 127.0.0.1 - - [31/Jul/2026 13:20:04] "GET / HTTP/1.1" 200 -
+2026-07-31 13:20:11,331 - INFO - [API_QUERY] 收到参数
+2026-07-31 13:20:11,766 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 13:20:11,766 - INFO - 127.0.0.1 - - [31/Jul/2026 13:20:11] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 13:23:51,930 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 13:23:51,930 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 13:24:12,995 - INFO - 127.0.0.1 - - [31/Jul/2026 13:24:12] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 13:24:27,219 - INFO - [API_QUERY] 收到参数
+2026-07-31 13:24:27,615 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 13:24:27,616 - INFO - 127.0.0.1 - - [31/Jul/2026 13:24:27] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 13:28:46,121 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 13:28:46,123 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 13:29:08,679 - INFO - 127.0.0.1 - - [31/Jul/2026 13:29:08] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 13:29:16,955 - INFO - [API_QUERY] 收到参数
+2026-07-31 13:29:17,387 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 13:29:17,387 - INFO - 127.0.0.1 - - [31/Jul/2026 13:29:17] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 13:39:33,960 - INFO - [API_QUERY] 收到参数
+2026-07-31 13:39:35,329 - INFO - [API_QUERY] 返回成功，2 条数据
+2026-07-31 13:39:35,329 - INFO - 127.0.0.1 - - [31/Jul/2026 13:39:35] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 13:40:40,352 - INFO - 127.0.0.1 - - [31/Jul/2026 13:40:40] "GET / HTTP/1.1" 200 -
+2026-07-31 13:40:47,308 - INFO - [API_QUERY] 收到参数
+2026-07-31 13:40:47,624 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 13:40:47,625 - INFO - 127.0.0.1 - - [31/Jul/2026 13:40:47] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 13:47:03,971 - INFO - 127.0.0.1 - - [31/Jul/2026 13:47:03] "GET / HTTP/1.1" 200 -
+2026-07-31 13:47:04,026 - INFO - 127.0.0.1 - - [31/Jul/2026 13:47:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-31 15:15:03,616 - INFO - 127.0.0.1 - - [31/Jul/2026 15:15:03] "GET / HTTP/1.1" 200 -
+2026-07-31 15:15:18,153 - INFO - 127.0.0.1 - - [31/Jul/2026 15:15:18] "GET / HTTP/1.1" 200 -
+2026-07-31 15:15:34,945 - INFO - [API_QUERY] 收到参数
+2026-07-31 15:15:35,277 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 15:15:35,277 - INFO - 127.0.0.1 - - [31/Jul/2026 15:15:35] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 15:18:01,106 - INFO - 127.0.0.1 - - [31/Jul/2026 15:18:01] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 15:19:18,825 - INFO - 127.0.0.1 - - [31/Jul/2026 15:19:18] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 15:19:29,501 - INFO - [API_QUERY] 收到参数
+2026-07-31 15:19:29,964 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 15:19:29,966 - INFO - 127.0.0.1 - - [31/Jul/2026 15:19:29] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 15:27:10,490 - INFO - 127.0.0.1 - - [31/Jul/2026 15:27:10] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 15:27:18,686 - INFO - [API_QUERY] 收到参数
+2026-07-31 15:27:18,981 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 15:27:18,981 - INFO - 127.0.0.1 - - [31/Jul/2026 15:27:18] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 15:33:27,750 - INFO - 127.0.0.1 - - [31/Jul/2026 15:33:27] "GET / HTTP/1.1" 200 -
+2026-07-31 15:33:37,317 - INFO - [API_QUERY] 收到参数
+2026-07-31 15:33:37,616 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 15:33:37,616 - INFO - 127.0.0.1 - - [31/Jul/2026 15:33:37] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 15:35:32,998 - INFO - 127.0.0.1 - - [31/Jul/2026 15:35:32] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 15:35:40,127 - INFO - [API_QUERY] 收到参数
+2026-07-31 15:35:40,442 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 15:35:40,442 - INFO - 127.0.0.1 - - [31/Jul/2026 15:35:40] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 15:37:53,349 - INFO - 127.0.0.1 - - [31/Jul/2026 15:37:53] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 15:38:00,296 - INFO - [API_QUERY] 收到参数
+2026-07-31 15:38:00,668 - INFO - [API_QUERY] 返回成功，0 条数据
+2026-07-31 15:38:00,670 - INFO - 127.0.0.1 - - [31/Jul/2026 15:38:00] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 15:47:27,190 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 15:47:27,190 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 15:47:52,748 - INFO - 127.0.0.1 - - [31/Jul/2026 15:47:52] "GET / HTTP/1.1" 200 -
+2026-07-31 15:49:00,271 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 15:49:00,271 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 15:49:00,272 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 15:49:00,272 - INFO - [API_QUERY] 请求体: {"fulfillment":["fbs"],"variationsMerge":0,"_config":{"maxPages":1}}
+2026-07-31 15:49:00,272 - INFO - [API_QUERY] 解析后 params keys: ['fulfillment', 'variationsMerge', '_config']
+2026-07-31 15:49:00,272 - INFO - [API_QUERY] params 内容: {'fulfillment': ['fbs'], 'variationsMerge': 0, '_config': {'maxPages': 1}}
+2026-07-31 15:49:00,272 - INFO - [API_QUERY] 返回模拟数据，不调用真实API
+2026-07-31 15:49:00,272 - INFO - 127.0.0.1 - - [31/Jul/2026 15:49:00] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 16:06:17,892 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 16:06:17,893 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 16:06:23,010 - INFO - 127.0.0.1 - - [31/Jul/2026 16:06:23] "GET / HTTP/1.1" 200 -
+2026-07-31 16:06:46,813 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 16:06:46,813 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 16:06:46,813 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 16:06:46,813 - INFO - [API_QUERY] 请求体: {"fulfillment":["fbs"],"variationsMerge":0,"_config":{"maxPages":1}}
+2026-07-31 16:06:46,813 - INFO - [API_QUERY] 解析后 params keys: ['fulfillment', 'variationsMerge', '_config']
+2026-07-31 16:06:46,814 - INFO - [API_QUERY] params 内容: {'fulfillment': ['fbs'], 'variationsMerge': 0, '_config': {'maxPages': 1}}
+2026-07-31 16:06:46,814 - INFO - [API_QUERY] max_pages=1
+2026-07-31 16:06:47,184 - INFO - [API_QUERY] 返回结果: {"data": [], "total_pages": 1, "total_records": 0, "last_page": 1}
+2026-07-31 16:06:47,185 - INFO - 127.0.0.1 - - [31/Jul/2026 16:06:47] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 16:13:29,471 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 16:13:29,471 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 16:13:37,659 - INFO - 127.0.0.1 - - [31/Jul/2026 16:13:37] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 16:13:38,693 - INFO - 127.0.0.1 - - [31/Jul/2026 16:13:38] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 16:13:47,152 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 16:13:47,152 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 16:13:47,153 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 16:13:47,153 - INFO - [API_QUERY] 请求体: {"fulfillment":["fbs"],"variationsMerge":0,"_config":{"maxPages":1}}
+2026-07-31 16:13:47,153 - INFO - [API_QUERY] 解析后 params keys: ['fulfillment', 'variationsMerge', '_config']
+2026-07-31 16:13:47,153 - INFO - [API_QUERY] params 内容: {'fulfillment': ['fbs'], 'variationsMerge': 0, '_config': {'maxPages': 1}}
+2026-07-31 16:13:47,153 - INFO - [API_QUERY] max_pages=1
+2026-07-31 16:13:47,498 - INFO - [API_QUERY] 返回结果: {"data": [], "total_pages": 1, "total_records": 0, "last_page": 1}
+2026-07-31 16:13:47,499 - INFO - 127.0.0.1 - - [31/Jul/2026 16:13:47] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 16:15:15,193 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 16:15:15,194 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 16:15:17,961 - INFO - 127.0.0.1 - - [31/Jul/2026 16:15:17] "GET / HTTP/1.1" 200 -
+2026-07-31 16:15:24,649 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 16:15:24,649 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 16:15:24,649 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 16:15:24,650 - INFO - [API_QUERY] 请求体: {"fulfillment":["FBS"],"_config":{"maxPages":1}}
+2026-07-31 16:15:24,650 - INFO - [API_QUERY] 解析后 params keys: ['fulfillment', '_config']
+2026-07-31 16:15:24,650 - INFO - [API_QUERY] params 内容: {'fulfillment': ['FBS'], '_config': {'maxPages': 1}}
+2026-07-31 16:15:24,650 - INFO - [API_QUERY] max_pages=1
+2026-07-31 16:15:27,637 - INFO - [API_QUERY] 返回结果: {"data": [{"sku": 1548534980, "title": "Игровая приставка Sony PlayStation 5 Slim 825ГБ Blu-Ray Edition", "productUrl": "https://www.ozon.ru/product/1548534980", "brandId": 26303399, "brandName": "Sony", "brandUrl": "https://www.ozon.ru/brand/26303399", "imageUrl": "https://ir.ozone.ru/s3/multimedia-1-q/wc300/12106347434.jpg", "sellerId": 1865500, "sellerName": "М.Видео", "sellers": 0, "fulfillment": ["FBS"], "weight": 4904.0, "questionsAndAnswers": 291, "upTime": 1713214800000, "upDays": 836, "
+2026-07-31 16:15:27,639 - INFO - 127.0.0.1 - - [31/Jul/2026 16:15:27] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 16:51:35,089 - INFO - 127.0.0.1 - - [31/Jul/2026 16:51:35] "GET / HTTP/1.1" 200 -
+2026-07-31 18:20:56,616 - INFO - 127.0.0.1 - - [31/Jul/2026 18:20:56] "GET / HTTP/1.1" 200 -
+2026-07-31 20:26:13,357 - INFO - 127.0.0.1 - - [31/Jul/2026 20:26:13] "GET / HTTP/1.1" 200 -
+2026-07-31 20:26:14,547 - INFO - 127.0.0.1 - - [31/Jul/2026 20:26:14] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 20:44:42,596 - INFO - 127.0.0.1 - - [31/Jul/2026 20:44:42] "[33mGET /api/category/search?keyword=收腰荷叶边下摆上衣&limit=30 HTTP/1.1[0m" 404 -
+2026-07-31 20:45:00,682 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 20:45:00,682 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 20:45:00,682 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 20:45:00,682 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryIds":"","fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 20:45:00,683 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryIds', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 20:45:00,684 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryIds': '', 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 20:45:00,684 - INFO - [API_QUERY] max_pages=1
+2026-07-31 20:45:00,880 - INFO - [API_QUERY] 返回结果: {"data": [], "total_pages": 1, "total_records": 0, "last_page": 1}
+2026-07-31 20:45:00,881 - INFO - 127.0.0.1 - - [31/Jul/2026 20:45:00] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 20:45:43,205 - INFO - 127.0.0.1 - - [31/Jul/2026 20:45:43] "[33mGET /api/category/search?keyword=15621031_200001517_971151880&limit=30 HTTP/1.1[0m" 404 -
+2026-07-31 20:45:49,025 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 20:45:49,025 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 20:45:49,025 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 20:45:49,025 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryIds":"","fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 20:45:49,025 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryIds', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 20:45:49,025 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryIds': '', 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 20:45:49,026 - INFO - [API_QUERY] max_pages=1
+2026-07-31 20:45:49,246 - INFO - [API_QUERY] 返回结果: {"data": [], "total_pages": 1, "total_records": 0, "last_page": 1}
+2026-07-31 20:45:49,246 - INFO - 127.0.0.1 - - [31/Jul/2026 20:45:49] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryIds":"","fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryIds', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryIds': '', 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 20:46:06,328 - INFO - [API_QUERY] max_pages=1
+2026-07-31 20:46:06,546 - INFO - [API_QUERY] 返回结果: {"data": [], "total_pages": 1, "total_records": 0, "last_page": 1}
+2026-07-31 20:46:06,546 - INFO - 127.0.0.1 - - [31/Jul/2026 20:46:06] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryIds":"","fulfillment":["FBS"],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryIds', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryIds': '', 'fulfillment': ['FBS'], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 20:46:46,929 - INFO - [API_QUERY] max_pages=1
+2026-07-31 20:46:47,106 - INFO - [API_QUERY] 返回结果: {"data": [], "total_pages": 1, "total_records": 0, "last_page": 1}
+2026-07-31 20:46:47,106 - INFO - 127.0.0.1 - - [31/Jul/2026 20:46:47] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] 请求体: {"_config": {"maxPages": 1}, "categoryQueries": ["\u670d\u88c5", "Rashguard"], "fulfillment": ["FBO", "FBS"], "page": {"orders": [{"direction": "DESC", "field": "revenue"}], "pageNumber": 1, "pageSize": 100}, "price": {"max": 1000, "min": 100}}
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] 解析后 params keys: ['_config', 'categoryQueries', 'fulfillment', 'page', 'price']
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] params 内容: {'_config': {'maxPages': 1}, 'categoryQueries': ['服装', 'Rashguard'], 'fulfillment': ['FBO', 'FBS'], 'page': {'orders': [{'direction': 'DESC', 'field': 'revenue'}], 'pageNumber': 1, 'pageSize': 100}, 'price': {'max': 1000, 'min': 100}}
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] max_pages=1
+2026-07-31 21:00:01,808 - INFO - [API_QUERY] 类目查询词 category_queries=['服装', 'Rashguard']
+2026-07-31 21:00:02,035 - INFO - [API_QUERY] 返回商品数: 0
+2026-07-31 21:18:20,512 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 21:18:20,513 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 21:18:27,645 - INFO - 127.0.0.1 - - [31/Jul/2026 21:18:27] "GET / HTTP/1.1" 200 -
+2026-07-31 21:18:46,840 - INFO - 127.0.0.1 - - [31/Jul/2026 21:18:46] "GET /api/category/search?keyword=收腰荷叶边下摆上衣&limit=30 HTTP/1.1" 200 -
+2026-07-31 21:18:58,738 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 21:18:58,738 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 21:18:58,739 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 21:18:58,739 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryQueries":[],"fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 21:18:58,739 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryQueries', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 21:18:58,739 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryQueries': [], 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 21:18:58,739 - INFO - [API_QUERY] max_pages=1
+2026-07-31 21:18:58,739 - INFO - [API_QUERY] 类目查询词 category_queries=[]
+2026-07-31 21:19:01,602 - INFO - [API_QUERY] 返回商品数: 100
+2026-07-31 21:19:01,605 - INFO - 127.0.0.1 - - [31/Jul/2026 21:19:01] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 22:07:37,251 - INFO - 127.0.0.1 - - [31/Jul/2026 22:07:37] "GET / HTTP/1.1" 200 -
+2026-07-31 22:07:47,038 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 22:07:47,038 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 22:08:00,021 - INFO - 127.0.0.1 - - [31/Jul/2026 22:08:00] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 22:08:21,712 - INFO - 127.0.0.1 - - [31/Jul/2026 22:08:21] "GET /api/category/search?keyword=婴儿泳衣&limit=30 HTTP/1.1" 200 -
+2026-07-31 22:08:34,219 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 22:08:34,219 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 22:08:34,219 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 22:08:34,220 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryQueries":["婴儿泳衣"],"fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 22:08:34,220 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryQueries', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 22:08:34,220 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryQueries': ['婴儿泳衣'], 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 22:08:34,220 - INFO - [API_QUERY] max_pages=1
+2026-07-31 22:08:34,220 - INFO - [API_QUERY] 类目查询词 category_queries=['婴儿泳衣']
+2026-07-31 22:08:34,775 - INFO - [API_QUERY] 返回商品数: 0
+2026-07-31 22:08:34,776 - INFO - 127.0.0.1 - - [31/Jul/2026 22:08:34] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 22:25:37,503 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 22:25:37,503 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 22:25:42,988 - INFO - 127.0.0.1 - - [31/Jul/2026 22:25:42] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 22:25:44,117 - INFO - 127.0.0.1 - - [31/Jul/2026 22:25:44] "[36mGET / HTTP/1.1[0m" 304 -
+2026-07-31 22:26:04,988 - INFO - 127.0.0.1 - - [31/Jul/2026 22:26:04] "GET /api/category/search?keyword=15621031_41777465_93066&limit=30 HTTP/1.1" 200 -
+2026-07-31 22:26:17,753 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 22:26:17,753 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 22:26:17,753 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 22:26:17,753 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryQueries":["连指手套"],"fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 22:26:17,753 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryQueries', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 22:26:17,753 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryQueries': ['连指手套'], 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 22:26:17,754 - INFO - [API_QUERY] max_pages=1
+2026-07-31 22:26:17,754 - INFO - [API_QUERY] 类目查询词 category_queries=['连指手套']
+2026-07-31 22:26:20,297 - INFO - [API_QUERY] 返回商品数: 100
+2026-07-31 22:26:20,299 - INFO - 127.0.0.1 - - [31/Jul/2026 22:26:20] "POST /api/query HTTP/1.1" 200 -
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] 请求体: {"_config": {"maxPages": 1}, "categoryQueries": ["\u670d\u88c5"], "price": {"max": 1000, "min": 100}}
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] 解析后 params keys: ['_config', 'categoryQueries', 'price']
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] params 内容: {'_config': {'maxPages': 1}, 'categoryQueries': ['服装'], 'price': {'max': 1000, 'min': 100}}
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] max_pages=1
+2026-07-31 22:37:57,604 - INFO - [API_QUERY] 类目查询词 category_queries=['服装']
+2026-07-31 22:37:57,891 - INFO - [API_QUERY] 返回商品数: 0
+2026-07-31 22:39:26,929 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-07-31 22:39:26,930 - INFO - [33mPress CTRL+C to quit[0m
+2026-07-31 22:39:34,839 - INFO - 127.0.0.1 - - [31/Jul/2026 22:39:34] "GET / HTTP/1.1" 200 -
+2026-07-31 22:40:01,403 - INFO - 127.0.0.1 - - [31/Jul/2026 22:40:01] "GET /api/category/search?keyword=15621031_41777465_93073&limit=30 HTTP/1.1" 200 -
+2026-07-31 22:40:08,883 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-07-31 22:40:08,883 - INFO - [API_QUERY] 请求方法: POST
+2026-07-31 22:40:08,883 - INFO - [API_QUERY] Content-Type: application/json
+2026-07-31 22:40:08,883 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryQueries":["领带"],"fulfillment":[],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-07-31 22:40:08,883 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryQueries', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-07-31 22:40:08,883 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryQueries': ['领带'], 'fulfillment': [], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-07-31 22:40:08,884 - INFO - [API_QUERY] max_pages=1
+2026-07-31 22:40:08,884 - INFO - [API_QUERY] 类目查询词 category_queries=['领带']
+2026-07-31 22:40:11,532 - INFO - [API_QUERY] 返回商品数: 100
+2026-07-31 22:40:11,548 - INFO - 127.0.0.1 - - [31/Jul/2026 22:40:11] "POST /api/query HTTP/1.1" 200 -
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] 请求方法: POST
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] Content-Type: application/json
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] 请求体: {"_config": {"maxPages": 1}, "categoryQueries": ["\u9632\u78e8\u8863", "\u82ad\u857e\u5e73\u5e95\u978b", "\u79fb\u52a8\u7535\u8bdd"], "fulfillment": []}
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] 解析后 params keys: ['_config', 'categoryQueries', 'fulfillment']
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] params 内容: {'_config': {'maxPages': 1}, 'categoryQueries': ['防磨衣', '芭蕾平底鞋', '移动电话'], 'fulfillment': []}
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] max_pages=1
+2026-08-01 12:44:09,105 - INFO - [API_QUERY] 类目查询词 category_queries=['防磨衣', '芭蕾平底鞋', '移动电话']
+2026-08-01 12:44:11,784 - INFO - [API_QUERY] 返回商品数: 100
+2026-08-01 12:47:26,506 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 12:47:26,506 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 12:47:31,184 - INFO - 127.0.0.1 - - [01/Aug/2026 12:47:31] "GET / HTTP/1.1" 200 -
+2026-08-01 12:47:31,292 - INFO - 127.0.0.1 - - [01/Aug/2026 12:47:31] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:11:05,334 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:11:05,335 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:11:12,012 - INFO - 127.0.0.1 - - [01/Aug/2026 13:11:12] "GET / HTTP/1.1" 200 -
+2026-08-01 13:11:12,117 - INFO - 127.0.0.1 - - [01/Aug/2026 13:11:12] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:19:37,200 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:19:37,200 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:19:40,940 - INFO - 127.0.0.1 - - [01/Aug/2026 13:19:40] "GET / HTTP/1.1" 200 -
+2026-08-01 13:19:41,088 - INFO - 127.0.0.1 - - [01/Aug/2026 13:19:41] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:23:24,385 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:23:24,385 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:23:28,657 - INFO - 127.0.0.1 - - [01/Aug/2026 13:23:28] "[36mGET / HTTP/1.1[0m" 304 -
+2026-08-01 13:23:28,756 - INFO - 127.0.0.1 - - [01/Aug/2026 13:23:28] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:29:16,436 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:29:16,436 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:29:22,888 - INFO - 127.0.0.1 - - [01/Aug/2026 13:29:22] "GET / HTTP/1.1" 200 -
+2026-08-01 13:29:22,985 - INFO - 127.0.0.1 - - [01/Aug/2026 13:29:22] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:37:05,385 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:37:05,386 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:37:08,864 - INFO - 127.0.0.1 - - [01/Aug/2026 13:37:08] "GET / HTTP/1.1" 200 -
+2026-08-01 13:37:08,962 - INFO - 127.0.0.1 - - [01/Aug/2026 13:37:08] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:44:37,842 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:44:37,842 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:44:41,144 - INFO - 127.0.0.1 - - [01/Aug/2026 13:44:41] "GET / HTTP/1.1" 200 -
+2026-08-01 13:44:41,247 - INFO - 127.0.0.1 - - [01/Aug/2026 13:44:41] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 13:52:19,685 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 13:52:19,686 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 13:52:23,044 - INFO - 127.0.0.1 - - [01/Aug/2026 13:52:23] "GET / HTTP/1.1" 200 -
+2026-08-01 13:52:23,144 - INFO - 127.0.0.1 - - [01/Aug/2026 13:52:23] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:08:07,170 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:08:07,170 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:08:13,318 - INFO - 127.0.0.1 - - [01/Aug/2026 14:08:13] "GET / HTTP/1.1" 200 -
+2026-08-01 14:08:13,451 - INFO - 127.0.0.1 - - [01/Aug/2026 14:08:13] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:14:35,377 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:14:35,377 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:14:38,641 - INFO - 127.0.0.1 - - [01/Aug/2026 14:14:38] "GET / HTTP/1.1" 200 -
+2026-08-01 14:14:41,236 - INFO - 127.0.0.1 - - [01/Aug/2026 14:14:41] "[36mGET / HTTP/1.1[0m" 304 -
+2026-08-01 14:20:45,162 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:20:45,162 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:22:13,868 - INFO - 127.0.0.1 - - [01/Aug/2026 14:22:13] "GET / HTTP/1.1" 200 -
+2026-08-01 14:24:12,315 - INFO - 127.0.0.1 - - [01/Aug/2026 14:24:12] "GET / HTTP/1.1" 200 -
+2026-08-01 14:31:09,206 - INFO - 127.0.0.1 - - [01/Aug/2026 14:31:09] "GET / HTTP/1.1" 200 -
+2026-08-01 14:35:07,268 - INFO - 127.0.0.1 - - [01/Aug/2026 14:35:07] "GET / HTTP/1.1" 200 -
+2026-08-01 14:39:26,038 - INFO - 127.0.0.1 - - [01/Aug/2026 14:39:26] "GET / HTTP/1.1" 200 -
+2026-08-01 14:39:26,167 - INFO - 127.0.0.1 - - [01/Aug/2026 14:39:26] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:39:26,290 - INFO - 127.0.0.1 - - [01/Aug/2026 14:39:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-08-01 14:40:33,018 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:40:33,018 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:40:36,601 - INFO - 127.0.0.1 - - [01/Aug/2026 14:40:36] "GET / HTTP/1.1" 200 -
+2026-08-01 14:40:36,700 - INFO - 127.0.0.1 - - [01/Aug/2026 14:40:36] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:44:49,575 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:44:49,576 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:44:52,359 - INFO - 127.0.0.1 - - [01/Aug/2026 14:44:52] "GET / HTTP/1.1" 200 -
+2026-08-01 14:44:52,461 - INFO - 127.0.0.1 - - [01/Aug/2026 14:44:52] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:48:07,914 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:48:07,914 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:48:10,746 - INFO - 127.0.0.1 - - [01/Aug/2026 14:48:10] "GET / HTTP/1.1" 200 -
+2026-08-01 14:48:10,844 - INFO - 127.0.0.1 - - [01/Aug/2026 14:48:10] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:53:53,397 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 14:53:53,397 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 14:53:56,592 - INFO - 127.0.0.1 - - [01/Aug/2026 14:53:56] "GET / HTTP/1.1" 200 -
+2026-08-01 14:53:56,690 - INFO - 127.0.0.1 - - [01/Aug/2026 14:53:56] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 14:54:26,120 - INFO - [API_QUERY] === 收到前端请求 ===
+2026-08-01 14:54:26,121 - INFO - [API_QUERY] 请求方法: POST
+2026-08-01 14:54:26,121 - INFO - [API_QUERY] Content-Type: application/json
+2026-08-01 14:54:26,121 - INFO - [API_QUERY] 请求体: {"keywords":[],"skus":[],"sellerName":[],"categoryQueries":["移动电话","平板电脑","智能手机","卫星电话","儿童平板电脑","相机镜头","增距镜","放大镜","电脑电源","电源测试仪","服务器电源","服务器机箱部件","服务器组装配件","电脑机箱","电脑螺丝","机箱防尘网","显卡夹","电脑机箱元件","视频卡盒","内存模块","服务器处理器","处理器","扩展卡/扩展板","主板","电子翻译器","电子书","游戏笔记本电脑","一体式","台式主机","笔记本电脑","触摸桌","瘦客户端","微电脑板","微电脑模块","装配中的计算机","迷你电脑","服务器","微型计算机","MP3播放器","录音机","CD播放器","蓝光播放器","影碟机","录音笔遥控器","录音笔配件","图形输入板","图形显示屏","硬盘托架","磁带机","内置固态硬盘","SSD/HDD硬盘适配器","内置硬盘","固态硬盘/硬盘扩展坞","磁盘控制器","网络存储","外置硬盘","数据存储器外壳","固态混合硬盘","外置固态硬盘","车载充电器","无线充电接收器","无线充电器","扩展坞","交流充电器","电池充电器","USB测试仪","电源","太阳能充电器","保护膜","保护玻璃","防护玻璃粘贴配件","绘图仪用水凝膜","音频接口","声卡","不间断电源电池","不间断电源配件","不间断电源","电压转换器","不间断电源逆变器","舞蹈垫","游戏充值卡","应用商店充值卡","游戏机","游戏机配件","游戏机散热","控制台支架","游戏机配件","游戏护臂","控制器盖","游戏卡带","互联网连接电缆","电缆架","USB 集线器","连接器","适配器电缆","电缆分路器","延长线","天线电缆","电缆磨损保护","运动手环充电线","HDMI延长线","音频线缆","视频电缆","电源线","电缆测试仪","铁氧体磁环滤波器","编程器线缆","移动设备电缆","计算机外围设备电缆","工具电缆","电线存储箱","电涌保护器存储箱","卫星调制解调器","卫星互联网套件","卫星互联网碟形天线","媒体转换器","收发信机","KVM开关","网络网关","网络控制器","DSL 调制解调器","电力线适配器","无线网卡","无线网桥","交换机","路由器","分离器","接入点","信号增强器","网卡","PoE注入器","WI-FI适配器","接线板","无线网状网络系统","内置传真调制解调器","调制解调器池","用户终端","SIM卡配件","SIM卡","带调制解调器/路由器的套餐","电视机","显微镜","望远镜","显微镜配件","望远镜配件","无线电话","电话听筒","有线电话","电话和交换机配件","自动电话交换机","SIP电话","电源分线器","延长线/插线板","网络适配器","智能手表表带","智能手表","智能手表电池","智能手表配件","智能手表装饰","儿童智能手表","音频功率放大器","唱机前置放大器","数模转换器","USB 接收器","直播控制器","游戏手柄","游戏键盘","游戏鼠标","红外接收器","键盘","游戏键盘和鼠标套装","键盘和鼠标套装","电脑鼠标","电视遥控器","游戏方向盘","光驱","蓝牙适配器","触控板","腕托","键盘和鼠标配件","遥控器支架","键盘套","键盘清洁维修套件","灯具遥控器","键盘支架","遥控器维修套件","赛车模拟器配件","键盘润滑剂","遥控器套","照片墨盒","防水壳","用于拍照的镜头遮光罩","闪光灯","相机液晶屏保护罩","相机配件","镜头盖","镜头适配器","相机背带","滤光器","闪光灯同步器","蓝牙拍照按钮","录音带","录像带","取景器","相机胶卷","胶卷盒","磁带","视频发送器","移动拍摄灯","网络摄像头","摄像机","钓鱼用水下摄像机","运动相机","运动相机媒体模块","相机眼镜","网络摄像头遮盖","儿童相机","单反相机","数码相机","即时打印相机","无反光镜相机","胶片相机","平板电脑保护套","手机挂绳","智能手机壳","游戏机套","电脑配件与外围设备护套","电子书套","耳机盒","摄影摄像设备包","音箱/播放器保护套","耳机充电盒","智能手机卡套","智能手表保护膜/保护壳","稳定器配件","运动相机支架","相机水平仪","三脚架移动平台","自拍杆","三脚架平台","折叠三脚架","三脚架云台","摄像滑轨","相机稳定器","智能手机稳定器","智能音箱","家庭影院","回音壁","音响系统","电脑音响系统","无线音箱","低音炮","音频转换器","声音控制面板","车载音响","组合音响","收音机","磁带播放器","卡拉OK系统","语音导览","智能音箱备件","卫星电视","天线","天线紧固件","天线调谐装置","天线放大器","CAM模块","电池手柄","可充电电池","电池","手机电池","蓄电池","电池盒","充电宝","用于外部电池的可更换电池","电池盒","便携式充电站","电池适配器","显卡","录像带数字化设备","视频混合器","视频采集卡","视频监控安装组件","监控摄像头","监控录像机","视频监控系统","胸戴式摄像机","视频监控系统测试仪","执法记录仪配件","人脸识别系统","监控摄像头备件","虚拟安全摄像头","3D眼镜","虚拟现实配件","VR眼镜","黑胶唱片机","黑胶唱片机备件","唱片存储箱","唱片护理套件","_x005f_x0016_唱片架","黑胶唱片数字化仪","黑胶唱片机配件","唱片套","移动设备用视频内窥镜","数码相框","手写笔配件","手写笔","智能手机散热器","非接触式支付手环","智能戒指","蓝牙标签","智能手机屏幕放大镜","智能名片","智能笔","蓝牙标签盒","手机镜头","机箱风扇","CPU散热器","电脑散热器","个人电脑水冷系统","导热垫","散热器紧固件","电脑风扇控制器","导热膏刮刀","水冷系统用液体","电脑风扇润滑剂","水冷头","电脑水冷泵","热熔胶棒","微型计算机风扇","微电脑散热器","专用集成电路/矿机冷却系统","导热硅脂","手机气囊支架","网络设备安装配件","显示器支架","电视支架","电视装饰框","电脑悬挂支架","电视屏幕保护膜","电视安全带","手机支架","DJ 设备机架","平板电脑支架","显示器座","耳机支架","智能手表支架","笔记本电脑支架","媒体播放器","网络播放器","访问模块","麦克风","语音广播系统","录音室套件","麦克风支架","麦克风配件","显示器","监视器校准器","交互式视频面板","相机屏幕","显示器备件","全球定位系统追踪器","导航仪","导航配件","导航器备件","耳机","摩托车耳机","密码存储设备","刻录光盘","U盘","内存卡","读卡器","USB驱动器复制器","电子数字签名","警报器传感器","电子钥匙","门禁系统","读取器","对讲话筒","个人报警系统","GSM报警系统","电子锁","音频对讲机","视频猫眼","可视对讲系统","呼叫面板","警报器","家庭安防系统套装","安防系统安装组件","防追踪探测仪","自动门附件","安防系统电池","电视模拟器","用于检查探测器的测试仪","代码面板","防盗系统","门窗自动开闭装置","信号抑制器","电话模型","信号启动单元","门禁系统安装配件","自动门备件","工业安全系统","转播扬声器","安全系统信号中继器","旋转栅门","扩音器","打印机/一体机备件","碎纸机油","复印机","多功能一体机","打印机","扫描仪","迷你打印机","收据打印机","塑料卡片打印机","打印机电池","墨盒加墨台","印花海绵","贴纸/标签打印机","图案投影仪","投影仪屏幕","投影仪","全息风扇","投影机备件","像素屏","投影屏幕张紧器","打印耗材","塑封膜","电子设备清洁工具","电子产品喷雾","打印机清洁剂","防静电清洁手套","数位板手套","防尘罩","电子清洁刷","电子产品清洁布","压缩空气罐","清洁铅笔","电子产品清洁套件","手提电脑包","笔记本电脑锁","光盘存储配件","鼠标垫","内存卡","恢复短语存储设备","挖矿机","冷钱包","反射器","Chroma Key抠像背景布","摄像机支架","演播室设备","提词器","拍照背景支架","暗室配件","投影模具","照片盒","摄影伞","照片背景","柔光箱","照相设备架","传真机","装订机","覆膜机","绘图仪","切纸机","标签绕线器","标签贴标机","热压机","印刷机","印刷机零件","3D打印机","3D扫描仪","用于3D打印机的塑料","3D打印机光敏树脂","塑料干燥机","3D打印胶","3D打印膜材","固化清洗机","用于 3D 打印和扫描的配件","3D打印机料槽","3D打印机备件","印后设备材料","智能天气站","智能家居设备支架","智能家居传感器","智能继电器","智能家居控制器","智能家居中心","智能家居套件","智能家居扩展模块","泄漏保护系统","开发电路板","机器人搭建套装","微控制器","仪器外壳","机器人构建指示灯","工业控制面板","微电路","机电式继电器","机器人防护装置","机器人结构件","无线电套件和模块","电子模块","无源电子元件","有源电子元件","访客计数器","POS终端","信息亭","在线收银机的保护玻璃","收银机抽屉","财政数据运营商激活码","顾客显示屏","数据采集终端","数据采集终端支架","POS机电脑","收银机备件","POS显示器","电子收银台","在线收银机","密码输入板","会计资料存储器","条码扫描器","票据打印机","可编程机器人","机器人技术模块","机器人套件","无人机","四轴飞行器","无人机和四轴飞行器配件与零件","无人机/四旋翼飞行器遥控器","无人机滤光片","无人机/四轴飞行器电池","手机零件","触摸屏维修工具","智能手机维修工具","平板电脑备件","备件储存箱","特效发生器液","特效激光","迪斯科球","舞台设备箱","舞台灯具","舞台灯光控制器","窗帘复位系统","声音处理装置","舞台设备备件","灯架","特效发生器","笔记本电池","笔记本电脑外壳元件","笔记本电脑零配件","钞票检测器","演示遥控器","撕碎机","硬币清分计数器","钞票分点钞机","贵金属探测器","会议联络系统","会议对讲设备","演示设备","声学支架/固定","蓝牙音频适配器","电视背光测试仪","智能音箱支架","音频设备备件","电视配件","摄像器材零件","音响设备配件","耳机耳垫"],"fulfillment":["FBS"],"labels":[],"brand":{"type":0,"brandName":[]},"searchDate":"","creationDate":null,"variationsMerge":0,"filterRemoveProduct":true,"tag":"","page":{"pageNumber":1,"pageSize":100,"orders":[{"field":"revenue","direction":"DESC"}]},"_config":{"maxPages":1}}
+2026-08-01 14:54:26,121 - INFO - [API_QUERY] 解析后 params keys: ['keywords', 'skus', 'sellerName', 'categoryQueries', 'fulfillment', 'labels', 'brand', 'searchDate', 'creationDate', 'variationsMerge', 'filterRemoveProduct', 'tag', 'page', '_config']
+2026-08-01 14:54:26,125 - INFO - [API_QUERY] params 内容: {'keywords': [], 'skus': [], 'sellerName': [], 'categoryQueries': ['移动电话', '平板电脑', '智能手机', '卫星电话', '儿童平板电脑', '相机镜头', '增距镜', '放大镜', '电脑电源', '电源测试仪', '服务器电源', '服务器机箱部件', '服务器组装配件', '电脑机箱', '电脑螺丝', '机箱防尘网', '显卡夹', '电脑机箱元件', '视频卡盒', '内存模块', '服务器处理器', '处理器', '扩展卡/扩展板', '主板', '电子翻译器', '电子书', '游戏笔记本电脑', '一体式', '台式主机', '笔记本电脑', '触摸桌', '瘦客户端', '微电脑板', '微电脑模块', '装配中的计算机', '迷你电脑', '服务器', '微型计算机', 'MP3播放器', '录音机', 'CD播放器', '蓝光播放器', '影碟机', '录音笔遥控器', '录音笔配件', '图形输入板', '图形显示屏', '硬盘托架', '磁带机', '内置固态硬盘', 'SSD/HDD硬盘适配器', '内置硬盘', '固态硬盘/硬盘扩展坞', '磁盘控制器', '网络存储', '外置硬盘', '数据存储器外壳', '固态混合硬盘', '外置固态硬盘', '车载充电器', '无线充电接收器', '无线充电器', '扩展坞', '交流充电器', '电池充电器', 'USB测试仪', '电源', '太阳能充电器', '保护膜', '保护玻璃', '防护玻璃粘贴配件', '绘图仪用水凝膜', '音频接口', '声卡', '不间断电源电池', '不间断电源配件', '不间断电源', '电压转换器', '不间断电源逆变器', '舞蹈垫', '游戏充值卡', '应用商店充值卡', '游戏机', '游戏机配件', '游戏机散热', '控制台支架', '游戏机配件', '游戏护臂', '控制器盖', '游戏卡带', '互联网连接电缆', '电缆架', 'USB 集线器', '连接器', '适配器电缆', '电缆分路器', '延长线', '天线电缆', '电缆磨损保护', '运动手环充电线', 'HDMI延长线', '音频线缆', '视频电缆', '电源线', '电缆测试仪', '铁氧体磁环滤波器', '编程器线缆', '移动设备电缆', '计算机外围设备电缆', '工具电缆', '电线存储箱', '电涌保护器存储箱', '卫星调制解调器', '卫星互联网套件', '卫星互联网碟形天线', '媒体转换器', '收发信机', 'KVM开关', '网络网关', '网络控制器', 'DSL 调制解调器', '电力线适配器', '无线网卡', '无线网桥', '交换机', '路由器', '分离器', '接入点', '信号增强器', '网卡', 'PoE注入器', 'WI-FI适配器', '接线板', '无线网状网络系统', '内置传真调制解调器', '调制解调器池', '用户终端', 'SIM卡配件', 'SIM卡', '带调制解调器/路由器的套餐', '电视机', '显微镜', '望远镜', '显微镜配件', '望远镜配件', '无线电话', '电话听筒', '有线电话', '电话和交换机配件', '自动电话交换机', 'SIP电话', '电源分线器', '延长线/插线板', '网络适配器', '智能手表表带', '智能手表', '智能手表电池', '智能手表配件', '智能手表装饰', '儿童智能手表', '音频功率放大器', '唱机前置放大器', '数模转换器', 'USB 接收器', '直播控制器', '游戏手柄', '游戏键盘', '游戏鼠标', '红外接收器', '键盘', '游戏键盘和鼠标套装', '键盘和鼠标套装', '电脑鼠标', '电视遥控器', '游戏方向盘', '光驱', '蓝牙适配器', '触控板', '腕托', '键盘和鼠标配件', '遥控器支架', '键盘套', '键盘清洁维修套件', '灯具遥控器', '键盘支架', '遥控器维修套件', '赛车模拟器配件', '键盘润滑剂', '遥控器套', '照片墨盒', '防水壳', '用于拍照的镜头遮光罩', '闪光灯', '相机液晶屏保护罩', '相机配件', '镜头盖', '镜头适配器', '相机背带', '滤光器', '闪光灯同步器', '蓝牙拍照按钮', '录音带', '录像带', '取景器', '相机胶卷', '胶卷盒', '磁带', '视频发送器', '移动拍摄灯', '网络摄像头', '摄像机', '钓鱼用水下摄像机', '运动相机', '运动相机媒体模块', '相机眼镜', '网络摄像头遮盖', '儿童相机', '单反相机', '数码相机', '即时打印相机', '无反光镜相机', '胶片相机', '平板电脑保护套', '手机挂绳', '智能手机壳', '游戏机套', '电脑配件与外围设备护套', '电子书套', '耳机盒', '摄影摄像设备包', '音箱/播放器保护套', '耳机充电盒', '智能手机卡套', '智能手表保护膜/保护壳', '稳定器配件', '运动相机支架', '相机水平仪', '三脚架移动平台', '自拍杆', '三脚架平台', '折叠三脚架', '三脚架云台', '摄像滑轨', '相机稳定器', '智能手机稳定器', '智能音箱', '家庭影院', '回音壁', '音响系统', '电脑音响系统', '无线音箱', '低音炮', '音频转换器', '声音控制面板', '车载音响', '组合音响', '收音机', '磁带播放器', '卡拉OK系统', '语音导览', '智能音箱备件', '卫星电视', '天线', '天线紧固件', '天线调谐装置', '天线放大器', 'CAM模块', '电池手柄', '可充电电池', '电池', '手机电池', '蓄电池', '电池盒', '充电宝', '用于外部电池的可更换电池', '电池盒', '便携式充电站', '电池适配器', '显卡', '录像带数字化设备', '视频混合器', '视频采集卡', '视频监控安装组件', '监控摄像头', '监控录像机', '视频监控系统', '胸戴式摄像机', '视频监控系统测试仪', '执法记录仪配件', '人脸识别系统', '监控摄像头备件', '虚拟安全摄像头', '3D眼镜', '虚拟现实配件', 'VR眼镜', '黑胶唱片机', '黑胶唱片机备件', '唱片存储箱', '唱片护理套件', '_x005f_x0016_唱片架', '黑胶唱片数字化仪', '黑胶唱片机配件', '唱片套', '移动设备用视频内窥镜', '数码相框', '手写笔配件', '手写笔', '智能手机散热器', '非接触式支付手环', '智能戒指', '蓝牙标签', '智能手机屏幕放大镜', '智能名片', '智能笔', '蓝牙标签盒', '手机镜头', '机箱风扇', 'CPU散热器', '电脑散热器', '个人电脑水冷系统', '导热垫', '散热器紧固件', '电脑风扇控制器', '导热膏刮刀', '水冷系统用液体', '电脑风扇润滑剂', '水冷头', '电脑水冷泵', '热熔胶棒', '微型计算机风扇', '微电脑散热器', '专用集成电路/矿机冷却系统', '导热硅脂', '手机气囊支架', '网络设备安装配件', '显示器支架', '电视支架', '电视装饰框', '电脑悬挂支架', '电视屏幕保护膜', '电视安全带', '手机支架', 'DJ 设备机架', '平板电脑支架', '显示器座', '耳机支架', '智能手表支架', '笔记本电脑支架', '媒体播放器', '网络播放器', '访问模块', '麦克风', '语音广播系统', '录音室套件', '麦克风支架', '麦克风配件', '显示器', '监视器校准器', '交互式视频面板', '相机屏幕', '显示器备件', '全球定位系统追踪器', '导航仪', '导航配件', '导航器备件', '耳机', '摩托车耳机', '密码存储设备', '刻录光盘', 'U盘', '内存卡', '读卡器', 'USB驱动器复制器', '电子数字签名', '警报器传感器', '电子钥匙', '门禁系统', '读取器', '对讲话筒', '个人报警系统', 'GSM报警系统', '电子锁', '音频对讲机', '视频猫眼', '可视对讲系统', '呼叫面板', '警报器', '家庭安防系统套装', '安防系统安装组件', '防追踪探测仪', '自动门附件', '安防系统电池', '电视模拟器', '用于检查探测器的测试仪', '代码面板', '防盗系统', '门窗自动开闭装置', '信号抑制器', '电话模型', '信号启动单元', '门禁系统安装配件', '自动门备件', '工业安全系统', '转播扬声器', '安全系统信号中继器', '旋转栅门', '扩音器', '打印机/一体机备件', '碎纸机油', '复印机', '多功能一体机', '打印机', '扫描仪', '迷你打印机', '收据打印机', '塑料卡片打印机', '打印机电池', '墨盒加墨台', '印花海绵', '贴纸/标签打印机', '图案投影仪', '投影仪屏幕', '投影仪', '全息风扇', '投影机备件', '像素屏', '投影屏幕张紧器', '打印耗材', '塑封膜', '电子设备清洁工具', '电子产品喷雾', '打印机清洁剂', '防静电清洁手套', '数位板手套', '防尘罩', '电子清洁刷', '电子产品清洁布', '压缩空气罐', '清洁铅笔', '电子产品清洁套件', '手提电脑包', '笔记本电脑锁', '光盘存储配件', '鼠标垫', '内存卡', '恢复短语存储设备', '挖矿机', '冷钱包', '反射器', 'Chroma Key抠像背景布', '摄像机支架', '演播室设备', '提词器', '拍照背景支架', '暗室配件', '投影模具', '照片盒', '摄影伞', '照片背景', '柔光箱', '照相设备架', '传真机', '装订机', '覆膜机', '绘图仪', '切纸机', '标签绕线器', '标签贴标机', '热压机', '印刷机', '印刷机零件', '3D打印机', '3D扫描仪', '用于3D打印机的塑料', '3D打印机光敏树脂', '塑料干燥机', '3D打印胶', '3D打印膜材', '固化清洗机', '用于 3D 打印和扫描的配件', '3D打印机料槽', '3D打印机备件', '印后设备材料', '智能天气站', '智能家居设备支架', '智能家居传感器', '智能继电器', '智能家居控制器', '智能家居中心', '智能家居套件', '智能家居扩展模块', '泄漏保护系统', '开发电路板', '机器人搭建套装', '微控制器', '仪器外壳', '机器人构建指示灯', '工业控制面板', '微电路', '机电式继电器', '机器人防护装置', '机器人结构件', '无线电套件和模块', '电子模块', '无源电子元件', '有源电子元件', '访客计数器', 'POS终端', '信息亭', '在线收银机的保护玻璃', '收银机抽屉', '财政数据运营商激活码', '顾客显示屏', '数据采集终端', '数据采集终端支架', 'POS机电脑', '收银机备件', 'POS显示器', '电子收银台', '在线收银机', '密码输入板', '会计资料存储器', '条码扫描器', '票据打印机', '可编程机器人', '机器人技术模块', '机器人套件', '无人机', '四轴飞行器', '无人机和四轴飞行器配件与零件', '无人机/四旋翼飞行器遥控器', '无人机滤光片', '无人机/四轴飞行器电池', '手机零件', '触摸屏维修工具', '智能手机维修工具', '平板电脑备件', '备件储存箱', '特效发生器液', '特效激光', '迪斯科球', '舞台设备箱', '舞台灯具', '舞台灯光控制器', '窗帘复位系统', '声音处理装置', '舞台设备备件', '灯架', '特效发生器', '笔记本电池', '笔记本电脑外壳元件', '笔记本电脑零配件', '钞票检测器', '演示遥控器', '撕碎机', '硬币清分计数器', '钞票分点钞机', '贵金属探测器', '会议联络系统', '会议对讲设备', '演示设备', '声学支架/固定', '蓝牙音频适配器', '电视背光测试仪', '智能音箱支架', '音频设备备件', '电视配件', '摄像器材零件', '音响设备配件', '耳机耳垫'], 'fulfillment': ['FBS'], 'labels': [], 'brand': {'type': 0, 'brandName': []}, 'searchDate': '', 'creationDate': None, 'variationsMerge': 0, 'filterRemoveProduct': True, 'tag': '', 'page': {'pageNumber': 1, 'pageSize': 100, 'orders': [{'field': 'revenue', 'direction': 'DESC'}]}, '_config': {'maxPages': 1}}
+2026-08-01 14:54:26,125 - INFO - [API_QUERY] max_pages=1
+2026-08-01 14:54:26,125 - INFO - [API_QUERY] 类目查询词 category_queries=['移动电话', '平板电脑', '智能手机', '卫星电话', '儿童平板电脑', '相机镜头', '增距镜', '放大镜', '电脑电源', '电源测试仪', '服务器电源', '服务器机箱部件', '服务器组装配件', '电脑机箱', '电脑螺丝', '机箱防尘网', '显卡夹', '电脑机箱元件', '视频卡盒', '内存模块', '服务器处理器', '处理器', '扩展卡/扩展板', '主板', '电子翻译器', '电子书', '游戏笔记本电脑', '一体式', '台式主机', '笔记本电脑', '触摸桌', '瘦客户端', '微电脑板', '微电脑模块', '装配中的计算机', '迷你电脑', '服务器', '微型计算机', 'MP3播放器', '录音机', 'CD播放器', '蓝光播放器', '影碟机', '录音笔遥控器', '录音笔配件', '图形输入板', '图形显示屏', '硬盘托架', '磁带机', '内置固态硬盘', 'SSD/HDD硬盘适配器', '内置硬盘', '固态硬盘/硬盘扩展坞', '磁盘控制器', '网络存储', '外置硬盘', '数据存储器外壳', '固态混合硬盘', '外置固态硬盘', '车载充电器', '无线充电接收器', '无线充电器', '扩展坞', '交流充电器', '电池充电器', 'USB测试仪', '电源', '太阳能充电器', '保护膜', '保护玻璃', '防护玻璃粘贴配件', '绘图仪用水凝膜', '音频接口', '声卡', '不间断电源电池', '不间断电源配件', '不间断电源', '电压转换器', '不间断电源逆变器', '舞蹈垫', '游戏充值卡', '应用商店充值卡', '游戏机', '游戏机配件', '游戏机散热', '控制台支架', '游戏机配件', '游戏护臂', '控制器盖', '游戏卡带', '互联网连接电缆', '电缆架', 'USB 集线器', '连接器', '适配器电缆', '电缆分路器', '延长线', '天线电缆', '电缆磨损保护', '运动手环充电线', 'HDMI延长线', '音频线缆', '视频电缆', '电源线', '电缆测试仪', '铁氧体磁环滤波器', '编程器线缆', '移动设备电缆', '计算机外围设备电缆', '工具电缆', '电线存储箱', '电涌保护器存储箱', '卫星调制解调器', '卫星互联网套件', '卫星互联网碟形天线', '媒体转换器', '收发信机', 'KVM开关', '网络网关', '网络控制器', 'DSL 调制解调器', '电力线适配器', '无线网卡', '无线网桥', '交换机', '路由器', '分离器', '接入点', '信号增强器', '网卡', 'PoE注入器', 'WI-FI适配器', '接线板', '无线网状网络系统', '内置传真调制解调器', '调制解调器池', '用户终端', 'SIM卡配件', 'SIM卡', '带调制解调器/路由器的套餐', '电视机', '显微镜', '望远镜', '显微镜配件', '望远镜配件', '无线电话', '电话听筒', '有线电话', '电话和交换机配件', '自动电话交换机', 'SIP电话', '电源分线器', '延长线/插线板', '网络适配器', '智能手表表带', '智能手表', '智能手表电池', '智能手表配件', '智能手表装饰', '儿童智能手表', '音频功率放大器', '唱机前置放大器', '数模转换器', 'USB 接收器', '直播控制器', '游戏手柄', '游戏键盘', '游戏鼠标', '红外接收器', '键盘', '游戏键盘和鼠标套装', '键盘和鼠标套装', '电脑鼠标', '电视遥控器', '游戏方向盘', '光驱', '蓝牙适配器', '触控板', '腕托', '键盘和鼠标配件', '遥控器支架', '键盘套', '键盘清洁维修套件', '灯具遥控器', '键盘支架', '遥控器维修套件', '赛车模拟器配件', '键盘润滑剂', '遥控器套', '照片墨盒', '防水壳', '用于拍照的镜头遮光罩', '闪光灯', '相机液晶屏保护罩', '相机配件', '镜头盖', '镜头适配器', '相机背带', '滤光器', '闪光灯同步器', '蓝牙拍照按钮', '录音带', '录像带', '取景器', '相机胶卷', '胶卷盒', '磁带', '视频发送器', '移动拍摄灯', '网络摄像头', '摄像机', '钓鱼用水下摄像机', '运动相机', '运动相机媒体模块', '相机眼镜', '网络摄像头遮盖', '儿童相机', '单反相机', '数码相机', '即时打印相机', '无反光镜相机', '胶片相机', '平板电脑保护套', '手机挂绳', '智能手机壳', '游戏机套', '电脑配件与外围设备护套', '电子书套', '耳机盒', '摄影摄像设备包', '音箱/播放器保护套', '耳机充电盒', '智能手机卡套', '智能手表保护膜/保护壳', '稳定器配件', '运动相机支架', '相机水平仪', '三脚架移动平台', '自拍杆', '三脚架平台', '折叠三脚架', '三脚架云台', '摄像滑轨', '相机稳定器', '智能手机稳定器', '智能音箱', '家庭影院', '回音壁', '音响系统', '电脑音响系统', '无线音箱', '低音炮', '音频转换器', '声音控制面板', '车载音响', '组合音响', '收音机', '磁带播放器', '卡拉OK系统', '语音导览', '智能音箱备件', '卫星电视', '天线', '天线紧固件', '天线调谐装置', '天线放大器', 'CAM模块', '电池手柄', '可充电电池', '电池', '手机电池', '蓄电池', '电池盒', '充电宝', '用于外部电池的可更换电池', '电池盒', '便携式充电站', '电池适配器', '显卡', '录像带数字化设备', '视频混合器', '视频采集卡', '视频监控安装组件', '监控摄像头', '监控录像机', '视频监控系统', '胸戴式摄像机', '视频监控系统测试仪', '执法记录仪配件', '人脸识别系统', '监控摄像头备件', '虚拟安全摄像头', '3D眼镜', '虚拟现实配件', 'VR眼镜', '黑胶唱片机', '黑胶唱片机备件', '唱片存储箱', '唱片护理套件', '_x005f_x0016_唱片架', '黑胶唱片数字化仪', '黑胶唱片机配件', '唱片套', '移动设备用视频内窥镜', '数码相框', '手写笔配件', '手写笔', '智能手机散热器', '非接触式支付手环', '智能戒指', '蓝牙标签', '智能手机屏幕放大镜', '智能名片', '智能笔', '蓝牙标签盒', '手机镜头', '机箱风扇', 'CPU散热器', '电脑散热器', '个人电脑水冷系统', '导热垫', '散热器紧固件', '电脑风扇控制器', '导热膏刮刀', '水冷系统用液体', '电脑风扇润滑剂', '水冷头', '电脑水冷泵', '热熔胶棒', '微型计算机风扇', '微电脑散热器', '专用集成电路/矿机冷却系统', '导热硅脂', '手机气囊支架', '网络设备安装配件', '显示器支架', '电视支架', '电视装饰框', '电脑悬挂支架', '电视屏幕保护膜', '电视安全带', '手机支架', 'DJ 设备机架', '平板电脑支架', '显示器座', '耳机支架', '智能手表支架', '笔记本电脑支架', '媒体播放器', '网络播放器', '访问模块', '麦克风', '语音广播系统', '录音室套件', '麦克风支架', '麦克风配件', '显示器', '监视器校准器', '交互式视频面板', '相机屏幕', '显示器备件', '全球定位系统追踪器', '导航仪', '导航配件', '导航器备件', '耳机', '摩托车耳机', '密码存储设备', '刻录光盘', 'U盘', '内存卡', '读卡器', 'USB驱动器复制器', '电子数字签名', '警报器传感器', '电子钥匙', '门禁系统', '读取器', '对讲话筒', '个人报警系统', 'GSM报警系统', '电子锁', '音频对讲机', '视频猫眼', '可视对讲系统', '呼叫面板', '警报器', '家庭安防系统套装', '安防系统安装组件', '防追踪探测仪', '自动门附件', '安防系统电池', '电视模拟器', '用于检查探测器的测试仪', '代码面板', '防盗系统', '门窗自动开闭装置', '信号抑制器', '电话模型', '信号启动单元', '门禁系统安装配件', '自动门备件', '工业安全系统', '转播扬声器', '安全系统信号中继器', '旋转栅门', '扩音器', '打印机/一体机备件', '碎纸机油', '复印机', '多功能一体机', '打印机', '扫描仪', '迷你打印机', '收据打印机', '塑料卡片打印机', '打印机电池', '墨盒加墨台', '印花海绵', '贴纸/标签打印机', '图案投影仪', '投影仪屏幕', '投影仪', '全息风扇', '投影机备件', '像素屏', '投影屏幕张紧器', '打印耗材', '塑封膜', '电子设备清洁工具', '电子产品喷雾', '打印机清洁剂', '防静电清洁手套', '数位板手套', '防尘罩', '电子清洁刷', '电子产品清洁布', '压缩空气罐', '清洁铅笔', '电子产品清洁套件', '手提电脑包', '笔记本电脑锁', '光盘存储配件', '鼠标垫', '内存卡', '恢复短语存储设备', '挖矿机', '冷钱包', '反射器', 'Chroma Key抠像背景布', '摄像机支架', '演播室设备', '提词器', '拍照背景支架', '暗室配件', '投影模具', '照片盒', '摄影伞', '照片背景', '柔光箱', '照相设备架', '传真机', '装订机', '覆膜机', '绘图仪', '切纸机', '标签绕线器', '标签贴标机', '热压机', '印刷机', '印刷机零件', '3D打印机', '3D扫描仪', '用于3D打印机的塑料', '3D打印机光敏树脂', '塑料干燥机', '3D打印胶', '3D打印膜材', '固化清洗机', '用于 3D 打印和扫描的配件', '3D打印机料槽', '3D打印机备件', '印后设备材料', '智能天气站', '智能家居设备支架', '智能家居传感器', '智能继电器', '智能家居控制器', '智能家居中心', '智能家居套件', '智能家居扩展模块', '泄漏保护系统', '开发电路板', '机器人搭建套装', '微控制器', '仪器外壳', '机器人构建指示灯', '工业控制面板', '微电路', '机电式继电器', '机器人防护装置', '机器人结构件', '无线电套件和模块', '电子模块', '无源电子元件', '有源电子元件', '访客计数器', 'POS终端', '信息亭', '在线收银机的保护玻璃', '收银机抽屉', '财政数据运营商激活码', '顾客显示屏', '数据采集终端', '数据采集终端支架', 'POS机电脑', '收银机备件', 'POS显示器', '电子收银台', '在线收银机', '密码输入板', '会计资料存储器', '条码扫描器', '票据打印机', '可编程机器人', '机器人技术模块', '机器人套件', '无人机', '四轴飞行器', '无人机和四轴飞行器配件与零件', '无人机/四旋翼飞行器遥控器', '无人机滤光片', '无人机/四轴飞行器电池', '手机零件', '触摸屏维修工具', '智能手机维修工具', '平板电脑备件', '备件储存箱', '特效发生器液', '特效激光', '迪斯科球', '舞台设备箱', '舞台灯具', '舞台灯光控制器', '窗帘复位系统', '声音处理装置', '舞台设备备件', '灯架', '特效发生器', '笔记本电池', '笔记本电脑外壳元件', '笔记本电脑零配件', '钞票检测器', '演示遥控器', '撕碎机', '硬币清分计数器', '钞票分点钞机', '贵金属探测器', '会议联络系统', '会议对讲设备', '演示设备', '声学支架/固定', '蓝牙音频适配器', '电视背光测试仪', '智能音箱支架', '音频设备备件', '电视配件', '摄像器材零件', '音响设备配件', '耳机耳垫']
+2026-08-01 14:54:34,758 - INFO - [API_QUERY] 返回商品数: 100
+2026-08-01 14:54:34,767 - INFO - 127.0.0.1 - - [01/Aug/2026 14:54:34] "POST /api/query HTTP/1.1" 200 -
+2026-08-01 15:01:48,156 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 15:01:48,157 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 15:01:52,771 - INFO - 127.0.0.1 - - [01/Aug/2026 15:01:52] "GET / HTTP/1.1" 200 -
+2026-08-01 15:01:52,879 - INFO - 127.0.0.1 - - [01/Aug/2026 15:01:52] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 15:07:23,062 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 15:07:23,063 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 15:07:26,693 - INFO - 127.0.0.1 - - [01/Aug/2026 15:07:26] "GET / HTTP/1.1" 200 -
+2026-08-01 15:07:26,791 - INFO - 127.0.0.1 - - [01/Aug/2026 15:07:26] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 15:23:48,329 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 15:23:48,329 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 15:23:53,256 - INFO - 127.0.0.1 - - [01/Aug/2026 15:23:53] "GET / HTTP/1.1" 200 -
+2026-08-01 15:23:53,349 - INFO - 127.0.0.1 - - [01/Aug/2026 15:23:53] "GET /api/category/tree HTTP/1.1" 200 -
+2026-08-01 15:29:00,214 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.107.110:5000
+2026-08-01 15:29:00,214 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-01 15:29:03,766 - INFO - 127.0.0.1 - - [01/Aug/2026 15:29:03] "GET / HTTP/1.1" 200 -
+2026-08-01 15:29:03,863 - INFO - 127.0.0.1 - - [01/Aug/2026 15:29:03] "GET /api/category/tree HTTP/1.1" 200 -
