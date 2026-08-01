@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozon 商品图片爬虫</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9ff;
+        }
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+        .upload-area.dragover {
+            background: #e8eaff;
+            border-color: #764ba2;
+        }
+        .upload-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .upload-text {
+            color: #666;
+            font-size: 16px;
+        }
+        .upload-text strong {
+            color: #667eea;
+        }
+        #fileInput {
+            display: none;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status-area {
+            display: none;
+            margin-top: 30px;
+        }
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .status-text {
+            text-align: center;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .current-url {
+            font-size: 12px;
+            color: #999;
+            word-break: break-all;
+            margin-top: 10px;
+        }
+        .completed {
+            display: block;
+            text-align: center;
+        }
+        .completed h2 {
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+        .error {
+            color: #f44336;
+            text-align: center;
+            padding: 20px;
+        }
+        .tips {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        .tips h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .tips pre {
+            background: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ozon 商品图片爬虫</h1>
+        <p class="subtitle">上传 JSON 文件，批量爬取商品图片和描述</p>
+
+        <div id="uploadSection">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">
+                    <strong>点击上传</strong> 或拖拽 JSON 文件到这里
+                </p>
+            </div>
+            <input type="file" id="fileInput" accept=".json">
+            
+            <p id="fileName" style="text-align:center; margin-top:15px; color:#666;"></p>
+            
+            <button class="btn btn-primary" id="startBtn" disabled>
+                开始爬取
+            </button>
+        </div>
+
+        <div class="status-area" id="statusArea">
+            <div id="progressSection">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="status-text" id="statusText">准备中...</p>
+                <p class="current-url" id="currentUrl"></p>
+            </div>
+
+            <div id="completedSection" class="completed" style="display:none;">
+                <h2>爬取完成!</h2>
+                <p id="completedMessage"></p>
+                <a id="downloadBtn" class="download-btn" href="#">
+                    下载结果
+                </a>
+            </div>
+
+            <div id="errorSection" class="error" style="display:none;">
+                <p id="errorMessage"></p>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h3>JSON 文件格式要求：</h3>
+            <pre>{
+  "productUrl": "https://www.ozon.ru/product/..."
+}
+
+// 或数组格式：
+[
+  {"productUrl": "https://..."},
+  {"productUrl": "https://..."}
+]</pre>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileName = document.getElementById('fileName');
+        const startBtn = document.getElementById('startBtn');
+        const uploadSection = document.getElementById('uploadSection');
+        const statusArea = document.getElementById('statusArea');
+        const progressFill = document.getElementById('progressFill');
+        const statusText = document.getElementById('statusText');
+        const currentUrl = document.getElementById('currentUrl');
+        const completedSection = document.getElementById('completedSection');
+        const errorSection = document.getElementById('errorSection');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const completedMessage = document.getElementById('completedMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        let selectedFile = null;
+        let taskId = null;
+        let pollInterval = null;
+
+        // 点击上传
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        // 拖拽上传
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].name.endsWith('.json')) {
+                handleFile(files[0]);
+            }
+        });
+
+        // 文件选择
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            selectedFile = file;
+            fileName.textContent = '已选择: ' + file.name;
+            startBtn.disabled = false;
+        }
+
+        // 开始爬取
+        startBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+
+            startBtn.disabled = true;
+            startBtn.textContent = '上传中...';
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    taskId = result.task_id;
+                    fileName.textContent = `文件: ${result.filename} (${result.url_count} 个商品)`;
+                    startBtn.textContent = `已找到 ${result.url_count} 个商品，开始爬取...`;
+
+                    uploadSection.style.display = 'none';
+                    statusArea.style.display = 'block';
+                    statusArea.style.display = 'block';
+
+                    // 开始轮询状态
+                    pollInterval = setInterval(checkStatus, 1000);
+                } else {
+                    alert(result.message);
+                    startBtn.disabled = false;
+                    startBtn.textContent = '开始爬取';
+                }
+            } catch (error) {
+                alert('上传失败: ' + error.message);
+                startBtn.disabled = false;
+                startBtn.textContent = '开始爬取';
+            }
+        });
+
+        // 检查状态
+        function checkStatus() {
+            if (!taskId) return;
+
+            fetch(`/status/${taskId}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'crawling' && data.total > 0) {
+                        const percent = Math.round((data.current / data.total) * 100);
+                        progressFill.style.width = percent + '%';
+                        statusText.textContent = data.message;
+                        currentUrl.textContent = data.current_url;
+                    } else if (data.status === 'completed') {
+                        clearInterval(pollInterval);
+                        progressFill.style.width = '100%';
+                        document.getElementById('progressSection').style.display = 'none';
+                        completedSection.style.display = 'block';
+                        completedMessage.textContent = data.message;
+                        downloadBtn.href = `/download/${taskId}`;
+                    } else if (data.status === 'error') {
+                        clearInterval(pollInterval);
+                        document.getElementById('progressSection').style.display = 'none';
+                        errorSection.style.display = 'block';
+                        errorMessage.textContent = data.message;
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
