@@ -1159,6 +1159,12 @@ class WebCrawler:
                         if show_output:
                             print('⚠️ 检测到反爬验证页面，等待更长时间后重试...')
 
+                    # 404/410：商品已下架/不存在，不应换代理/换 Cookie，直接放弃
+                    if response.status in (404, 410):
+                        if show_output:
+                            print(f'⚠️ 商品已下架或不存在 (HTTP {response.status})，跳过')
+                        raise Exception(f'商品不可用，HTTP状态码: {response.status}')
+
                     # 403/429 错误：优先尝试换代理，再换 Cookie
                     if response.status in (403, 429):
                         # 1) 换代理
@@ -1175,6 +1181,11 @@ class WebCrawler:
                                     self.switch_to_next_cookie(next_cookie)
                                     time.sleep(5)
                                     continue
+
+                    # 5xx：服务器错误，可重试但不应换代理/换 Cookie
+                    if response.status in (500, 502, 503, 504):
+                        if show_output:
+                            print(f'⚠️ 服务器错误 (HTTP {response.status})')
 
                     if attempt < retries - 1:
                         # 失败后等待更久（线性递增）
@@ -1590,35 +1601,6 @@ class WebCrawler:
             self.close()
         except Exception:
             pass
-
-
-def extract_product_urls_from_json(json_file):
-    """从 JSON 文件中提取所有 productUrl"""
-    urls = []
-    try:
-        with open(json_file, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        
-        # 处理 data 数组格式 {"data": [...]}
-        if isinstance(data, dict) and 'data' in data:
-            items = data['data']
-        elif isinstance(data, list):
-            items = data
-        elif isinstance(data, dict):
-            items = [data]
-        else:
-            return urls
-        
-        for item in items:
-            if isinstance(item, dict) and 'productUrl' in item:
-                url = item['productUrl']
-                if url.startswith('http'):
-                    urls.append(url)
-                else:
-                    urls.append('https://www.ozon.ru' + url)
-    except Exception as e:
-        print(f'读取文件失败: {e}')
-    return urls
 
 
 def main():
