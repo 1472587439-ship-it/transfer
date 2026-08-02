@@ -864,6 +864,28 @@
                 currentL1Id = null;
                 currentL2Id = null;
             };
+            // 点击复选框后, 重渲染当前显示的弹层 (L2 / L3) 以同步勾选状态
+            window._refreshPopup = () => {
+                if (!popup.classList.contains('show')) return;
+                if (currentL1Id) {
+                    const items = l2ByL1[currentL1Id] || [];
+                    const html = items.map(n => renderNode(n, 2)).join('');
+                    const header = paneL2.querySelector('.cat-tree-col-header');
+                    paneL2.innerHTML = '';
+                    if (header) paneL2.appendChild(header);
+                    paneL2.insertAdjacentHTML('beforeend', html);
+                    paneL2.classList.add('show');
+                }
+                if (currentL2Id) {
+                    const items = l3ByL2[currentL2Id] || [];
+                    const html = items.map(n => renderNode(n, 3)).join('');
+                    const header = paneL3.querySelector('.cat-tree-col-header');
+                    paneL3.innerHTML = '';
+                    if (header) paneL3.appendChild(header);
+                    paneL3.insertAdjacentHTML('beforeend', html);
+                    paneL3.classList.add('show');
+                }
+            };
 
             // 监听 popup 上的 mouseenter/mouseleave, 控制 hide
             popup.addEventListener('mouseenter', cancelHide);
