@@ -228,9 +228,9 @@ def save_response(data, auto_index=True, custom_filename=None, extra_meta=None):
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     if custom_filename:
-        filename = f"{custom_filename}_{timestamp}.json"
+        filename = f"q_{custom_filename}_{timestamp}.json"
     else:
-        filename = f"response_{timestamp}.json"
+        filename = f"q_response_{timestamp}.json"
     filepath = os.path.join(OUTPUT_DIR, filename)
 
     try:

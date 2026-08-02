@@ -1718,8 +1718,8 @@ def main():
             def get_pending_files(folder):
                 """获取待处理的文件列表"""
                 json_files = glob_module.glob(os.path.join(folder, '*.json'))
-                json_files = [f for f in json_files if not f.endswith('_state.json') 
-                             and '/output/' not in f and not os.path.basename(f).startswith('w_')]
+                json_files = [f for f in json_files if not f.endswith('_state.json')
+                             and os.path.basename(f).startswith('q_')]
                 return json_files
 
             def process_single_file(json_file, crawler, overwrite, resume_mode):
