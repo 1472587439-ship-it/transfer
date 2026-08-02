@@ -537,6 +537,10 @@ class WebCrawler:
         print('✅ CDP 模式初始化完成')
 
     def initialize(self, use_cookies=True, use_real_chrome=False, cdp_mode=False, cdp_url='http://localhost:9222'):
+        # 保存启动模式，用于 restart_with_new_proxy 等场景保持一致
+        self._use_real_chrome = use_real_chrome
+        self._cdp_mode = cdp_mode
+        self._cdp_url = cdp_url
         # CDP 模式：连接到一个已经在跑的 Chrome（连你手动开的那个）
         if cdp_mode:
             self._initialize_cdp(cdp_url=cdp_url, use_cookies=use_cookies)
@@ -919,7 +923,12 @@ class WebCrawler:
 
         # 用新代理重启
         print('🔄 因代理问题，重启浏览器...')
-        self.initialize(use_cookies=True, use_real_chrome=False)
+        self.initialize(
+            use_cookies=True,
+            use_real_chrome=self._use_real_chrome,
+            cdp_mode=self._cdp_mode,
+            cdp_url=self._cdp_url,
+        )
         return True
     
     def switch_to_next_cookie(self, cookie_file=None):
@@ -984,6 +993,9 @@ class WebCrawler:
             window.chrome = { runtime: {} };
             Object.defineProperty(navigator, 'permissions', { get: () => Promise.resolve({ state: 'granted' }) });
         """)
+        
+        # 重新注册 API 拦截器
+        self._register_response_interceptor()
         
         print('Cookie切换完成!')
 
@@ -1564,7 +1576,20 @@ class WebCrawler:
     def close(self):
         if self.browser:
             self.browser.close()
-            print('浏览器已关闭')
+        if self.pw:
+            self.pw.stop()
+            self.pw = None
+        self.browser = None
+        self.context = None
+        self.page = None
+        print('Playwright 已关闭')
+
+    def __del__(self):
+        """析构时确保资源释放"""
+        try:
+            self.close()
+        except Exception:
+            pass
 
 
 def extract_product_urls_from_json(json_file):

@@ -93,12 +93,10 @@ python crawler.py --folder test --force
 爬取的数据包括：
 
 - **标题 (title)**: 页面标题
-- **元数据 (metadata)**: meta 标签内容（description, keywords 等）
-- **标题标签 (headings)**: h1-h6 标题内容
-- **链接 (links)**: 页面中的链接（最多 100 条）
-- **图片 (images)**: 图片信息（alt、src、尺寸）
-- **列表 (lists)**: 有序和无序列表
-- **表格 (tables)**: 表格数据（表头和行）
+- **描述 (description)**: 商品描述文本（已去除链接）
+- **图片 (images)**: 图片 URL 列表
+- **图片数量 (image_count)**: 图片总数
+- **时间戳 (timestamp)**: 爬取时间
 - **WB ID (wbId)**: 根据 Seerfar 分类 ID 映射的 WB subjectID
 
 ## 输出文件

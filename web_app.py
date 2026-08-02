@@ -56,6 +56,7 @@ def extract_product_urls(data):
 
 def crawl_task(task_id, json_content):
     """后台爬取任务"""
+    crawler = None
     try:
         tasks[task_id]['status'] = 'parsing'
         tasks[task_id]['message'] = '正在解析 JSON 文件...'
@@ -90,8 +91,6 @@ def crawl_task(task_id, json_content):
             
             time.sleep(1)
         
-        crawler.close()
-        
         # 保存结果
         result_file = f"{app.config['OUTPUT_FOLDER']}/batch_{task_id}.json"
         with open(result_file, 'w', encoding='utf-8') as f:
@@ -107,6 +106,9 @@ def crawl_task(task_id, json_content):
     except Exception as e:
         tasks[task_id]['status'] = 'error'
         tasks[task_id]['message'] = f'爬取失败: {e}'
+    finally:
+        if crawler:
+            crawler.close()
 
 
 @app.route('/')
