@@ -38,6 +38,8 @@ PROXIES_FILE = os.path.join(os.getcwd(), 'proxies.txt')  # 代理列表文件
 SWITCH_INTERVAL = 10  # 每爬取10个商品切换一次Cookie
 COOKIE_SWITCH_THRESHOLD = 3  # 连续3个403就切换Cookie
 STATE_FILE = os.path.join(os.getcwd(), '.crawler_state.json')  # 暂停状态保存文件
+DAEMON_STATE_FILE = os.path.join(OUTPUT_DIR, '.daemon_state.json')  # 守护进程状态
+DAEMON_MAX_RETRIES = 3  # 单个文件最多重试次数，超过后跳过
 
 # 频率控制（避免被反爬检测）
 REQUEST_DELAY_MIN = 5  # 请求最小间隔（秒）
@@ -1803,6 +1805,10 @@ def main():
                                 if item_url == url:
                                     item['crawledImages'] = data.get('images', [])
                                     item['crawledDescription'] = remove_urls_from_text(data.get('description', ''))
+                                    # 读取重量并写入 weightKG (g -> kg)
+                                    weight_g = item.get('weight')
+                                    if isinstance(weight_g, (int, float)) and weight_g > 0:
+                                        item['weightKG'] = round(weight_g / 1000, 3)
                                     # 查找并保存 wbId
                                     seerfar_id = item.get('categoryInfo', {}).get('category', {}).get('id')
                                     if seerfar_id:
@@ -1846,34 +1852,87 @@ def main():
                 print(f'🚀 守护进程模式已启动')
                 print(f'📂 监控文件夹: {folder_path}')
                 print(f'⏰ 检查间隔: {check_interval} 秒')
+                print(f'🔁 单文件失败重试上限: {DAEMON_MAX_RETRIES} 次')
                 print(f'💡 按 Ctrl+C 安全退出\n')
 
-                processed_files = set()  # 记录已处理过的文件
+                # 从磁盘恢复上次的守护进程状态（防止重启后丢失记忆）
+                processed_files = set()
+                retry_count = {}  # json_file -> 已失败次数
+                skipped_files = set()
+                if os.path.exists(DAEMON_STATE_FILE):
+                    try:
+                        with open(DAEMON_STATE_FILE, 'r', encoding='utf-8') as f:
+                            ds = json.load(f)
+                        processed_files = set(ds.get('processed_files', []))
+                        retry_count = ds.get('retry_count', {})
+                        skipped_files = set(ds.get('skipped_files', []))
+                        print(f'📂 恢复守护状态: 已处理 {len(processed_files)} 个, 跳过 {len(skipped_files)} 个')
+                    except Exception as e:
+                        print(f'⚠️ 守护状态加载失败（忽略）: {e}')
+
+                def save_daemon_state():
+                    """把守护进程状态写入磁盘"""
+                    try:
+                        payload = {
+                            'processed_files': sorted(processed_files),
+                            'retry_count': retry_count,
+                            'skipped_files': sorted(skipped_files),
+                            'updated_at': datetime.now().isoformat()
+                        }
+                        tmp = DAEMON_STATE_FILE + '.tmp'
+                        with open(tmp, 'w', encoding='utf-8') as f:
+                            json.dump(payload, f, ensure_ascii=False, indent=2)
+                        os.replace(tmp, DAEMON_STATE_FILE)
+                    except Exception as e:
+                        print(f'⚠️ 守护状态保存失败: {e}')
 
                 while True:
                     try:
                         json_files = get_pending_files(folder_path)
 
-                        # 找出新增的文件（排除已处理过的）
-                        new_files = [f for f in json_files if f not in processed_files]
+                        # 过滤掉已跳过的；找出真正待处理的（含失败重试）
+                        candidates = [f for f in json_files
+                                      if f not in processed_files and f not in skipped_files]
 
-                        if new_files:
-                            print(f'\n🔍 发现 {len(new_files)} 个新文件')
-                            for json_file in new_files:
-                                process_single_file(json_file, crawler, overwrite, resume_mode)
-                                processed_files.add(json_file)
+                        if candidates:
+                            print(f'\n🔍 发现 {len(candidates)} 个待处理文件（含 {sum(1 for f in candidates if f in retry_count)} 个失败重试）')
+                            for json_file in candidates:
+                                attempts = retry_count.get(json_file, 0) + 1
+                                print(f'📁 处理文件: {json_file} (第 {attempts}/{DAEMON_MAX_RETRIES} 次尝试)')
+
+                                ok = process_single_file(json_file, crawler, overwrite, resume_mode)
+
+                                if ok:
+                                    # 成功：加入已处理集，清空重试计数
+                                    processed_files.add(json_file)
+                                    retry_count.pop(json_file, None)
+                                else:
+                                    # 失败：累加重试次数
+                                    retry_count[json_file] = attempts
+                                    if attempts >= DAEMON_MAX_RETRIES:
+                                        print(f'⏭️ {json_file} 已连续失败 {attempts} 次，加入跳过队列')
+                                        skipped_files.add(json_file)
+                                        processed_files.add(json_file)
+                                    else:
+                                        print(f'🔄 失败 {attempts}/{DAEMON_MAX_RETRIES}，下一轮会重试')
+
+                                save_daemon_state()  # 每文件后立即落盘
+
                                 # 文件之间等待
                                 delay = random.uniform(3, 8)
                                 print(f'⏸️ 等待 {delay:.1f} 秒...\n')
                                 time.sleep(delay)
                         else:
-                            current_count = len(json_files)
-                            print(f'\r⏳ [{datetime.now().strftime("%H:%M:%S")}] 监控中... {current_count} 个待处理文件', end='', flush=True)
+                            skipped_count = len([f for f in json_files if f in skipped_files])
+                            current_count = len(json_files) - skipped_count
+                            skipped_hint = f', 已跳过 {skipped_count}' if skipped_count else ''
+                            print(f'\r⏳ [{datetime.now().strftime("%H:%M:%S")}] 监控中... {current_count} 个待处理文件{skipped_hint}    ', end='', flush=True)
 
                         time.sleep(check_interval)
 
                     except KeyboardInterrupt:
                         print('\n\n🛑 守护进程已停止')
+                        save_daemon_state()
                         return
 
             # ========== 普通批量模式（原有逻辑） ==========
@@ -2043,6 +2102,10 @@ def main():
                             if item_url == url:
                                 item['crawledImages'] = data.get('images', [])
                                 item['crawledDescription'] = remove_urls_from_text(data.get('description', ''))
+                                # 读取重量并写入 weightKG (g -> kg)
+                                weight_g = item.get('weight')
+                                if isinstance(weight_g, (int, float)) and weight_g > 0:
+                                    item['weightKG'] = round(weight_g / 1000, 3)
                                 # 查找并保存 wbId
                                 seerfar_id = item.get('categoryInfo', {}).get('category', {}).get('id')
                                 if seerfar_id:

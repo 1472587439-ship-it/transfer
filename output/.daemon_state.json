@@ -1,0 +1,15 @@
+{
+  "processed_files": [
+    "output\\q_web_20260802_213124.json",
+    "output\\q_web_20260802_215220.json",
+    "output\\q_web_20260803_031631.json",
+    "output\\q_web_20260803_052408.json"
+  ],
+  "retry_count": {
+    "output\\q_web_20260803_052408.json": 3
+  },
+  "skipped_files": [
+    "output\\q_web_20260803_052408.json"
+  ],
+  "updated_at": "2026-08-03T18:59:18.033543"
+}

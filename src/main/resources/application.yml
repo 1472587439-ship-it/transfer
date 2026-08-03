@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: wb-admin
+
+server:
+  port: 8080
+
+wb:
+  api:
+    base-url: "https://content-api.wildberries.ru"
+    price-url: "https://discounts-prices-api.wildberries.ru/api/v2/upload/task"
+
+output:
+  dir: ${user.dir}/output
